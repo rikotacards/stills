@@ -11,7 +11,6 @@ export const Post: React.FC = () => {
       position={"relative"}
       height={600}
       width={470}
-      border={"1px solid black"}
     >
       <PostHeader />
       <img
