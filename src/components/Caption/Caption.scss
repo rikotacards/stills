@@ -1,0 +1,16 @@
+.caption {
+  color: white;
+  cursor: pointer;
+
+}
+.closed {
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+.expanded {
+  overflow-y: scroll;
+}
+.expanded::-webkit-scrollbar {
+  display: none;
+}

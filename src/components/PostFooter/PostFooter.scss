@@ -1,0 +1,15 @@
+.reactions-container {
+  display: flex;
+  flex-direction: column;
+
+  .reactions {
+    white-space: nowrap;
+    overflow-x: scroll;
+    &::-webkit-scrollbar  {
+      display: none
+    }
+  }
+}
+.post-footer {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0));
+}
