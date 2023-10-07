@@ -6,6 +6,8 @@ import { Caption } from "../Caption/Caption";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import { Controller } from 'swiper/modules';
+import { useDrawerContext } from "../../providers/DrawerProvider";
+import { ReactionsDrawerContent } from "../ReactionsDrawerContent/ReactionsDrawerContent";
 
 interface PostFooterProps {
   swiper: any;
@@ -14,7 +16,11 @@ interface PostFooterProps {
 const captions = ['hi', '']
 const react = [1, 2, 3, 4, 5, 6, 7, 8, 4, 4, 4, 4]
 export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper }) => {
-
+  const drawerContext = useDrawerContext();
+  const onOpenReactionsDrawer = () => {
+    drawerContext.setRenderComponent(ReactionsDrawerContent)
+    drawerContext.onOpen()
+  }
   const captionSlides = captions.map((c, i) => <SwiperSlide style={{
     flexDirection: 'column',
     display: 'flex',
@@ -47,7 +53,7 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
 
         <Box ml="auto" display='flex'  alignItems={'center'}>
           <Chip sx={{color: 'white'}} variant="outlined" size='small' label={'1/2'}/>
-          <IconButton sx={{ color: 'white', mr: 1 }} size="small">
+          <IconButton onClick={onOpenReactionsDrawer} sx={{ color: 'white', mr: 1 }} size="small">
             <EmojiEmotionsIcon />
           </IconButton>
         </Box>
