@@ -3,25 +3,30 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import React from "react";
 import './PostFooter.scss';
 import { Caption } from "../Caption/Caption";
-const react = [1,2,3,4,5,6]
-export const PostFooter: React.FC = () => {
-  const [expanded, setOn] = React.useState(false);
-  const onClick = () => {
-    setOn(!expanded);
-  }
-  const reactions = react.map((r) =>  <Chip  sx={{ mr: 1, color: 'white' }} size="small" variant="outlined" label={`🔥14`} />)
-  return (
-    <div className='post-footer' style={{ 
-      maxHeight: expanded ? '50%': '18%',
-      display: 'flex', 
-      flexDirection: 'column', 
-      bottom: '0px', 
-      position: 'absolute', 
-      justifyContent: 'flex-end',
-      transition: 'height 0.2s linear',
-      width: '100%' }}>
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css';
+import { Controller } from 'swiper/modules';
 
-      <Caption expanded={expanded} onClick={onClick} />
+interface PostFooterProps {
+  swiper: any;
+  setSecondSwiper: any;
+}
+const captions = ['hi', '']
+const react = [1, 2, 3, 4, 5, 6, 7, 8, 4,4,4,4]
+export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper }) => {
+  
+  const captionSlides = captions.map((c, i) => <SwiperSlide key={c + i}><Caption text={c} /></SwiperSlide>)
+  const reactions = react.map(() => <Chip sx={{ mr: 1, color: 'white' }} size="small" variant="outlined" label={`🔥14`} />)
+  return (
+    <div className='post-footer'>
+      <Swiper
+      className='swiper-custom'
+        modules={[Controller]}
+        onSwiper={(swiper) => setSecondSwiper(swiper)}
+        controller={{ control: swiper }}
+      >
+        {captionSlides}
+      </Swiper>
       <Box
         display={"flex"}
         alignItems={"center"}
@@ -29,14 +34,12 @@ export const PostFooter: React.FC = () => {
         width="100%"
         className='reactions-container'
       >
-        <div style={{padding: '8px'}} className='reactions'>
-         {reactions}
-          
-
+        <div style={{ padding: '8px' }} className='reactions'>
+          {reactions}
         </div>
 
         <Box ml="auto">
-          <IconButton size="small">
+          <IconButton sx={{ color: 'white', mr: 1 }} size="small">
             <EmojiEmotionsIcon />
           </IconButton>
         </Box>

@@ -11,5 +11,20 @@
   }
 }
 .post-footer {
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  bottom: 0px;
+  width: 100%;
+  position: absolute;
+  justify-content: flex-end;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0));
+}
+.swiper-custom {
+  overflow-y: scroll;
+  width: 100%;
+  text-align: left;
+}
+.swiper-custom::-webkit-scrollbar {
+  display: none
 }

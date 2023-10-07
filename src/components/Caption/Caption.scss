@@ -1,7 +1,8 @@
 .caption {
   color: white;
   cursor: pointer;
-
+  padding: 0 8px;
+  display: flex;
 }
 .closed {
   -webkit-line-clamp: 2;
@@ -9,7 +10,8 @@
   display: -webkit-box;
 }
 .expanded {
-  overflow-y: scroll;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 }
 .expanded::-webkit-scrollbar {
   display: none;
