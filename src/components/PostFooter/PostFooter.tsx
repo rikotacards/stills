@@ -12,15 +12,22 @@ interface PostFooterProps {
   setSecondSwiper: any;
 }
 const captions = ['hi', '']
-const react = [1, 2, 3, 4, 5, 6, 7, 8, 4,4,4,4]
+const react = [1, 2, 3, 4, 5, 6, 7, 8, 4, 4, 4, 4]
 export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper }) => {
-  
-  const captionSlides = captions.map((c, i) => <SwiperSlide key={c + i}><Caption text={c} /></SwiperSlide>)
+
+  const captionSlides = captions.map((c, i) => <SwiperSlide style={{
+    flexDirection: 'column',
+    display: 'flex',
+    justifyContent: 'flex-end'
+  }} key={c + i}>
+
+    <Caption text={c} />
+  </SwiperSlide>)
   const reactions = react.map(() => <Chip sx={{ mr: 1, color: 'white' }} size="small" variant="outlined" label={`🔥14`} />)
   return (
     <div className='post-footer'>
       <Swiper
-      className='swiper-custom'
+        className='swiper-custom'
         modules={[Controller]}
         onSwiper={(swiper) => setSecondSwiper(swiper)}
         controller={{ control: swiper }}
@@ -38,7 +45,8 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
           {reactions}
         </div>
 
-        <Box ml="auto">
+        <Box ml="auto" display='flex'  alignItems={'center'}>
+          <Chip sx={{color: 'white'}} variant="outlined" size='small' label={'1/2'}/>
           <IconButton sx={{ color: 'white', mr: 1 }} size="small">
             <EmojiEmotionsIcon />
           </IconButton>

@@ -21,6 +21,10 @@ export const Caption: React.FC<CaptionProps> = ({ text }) => {
   }
   return (
     <div onClick={onClick} style={{
+      display: 'flex', 
+      flexDirection: 'column',
+      maxHeight: '150px',
+      justifyContent: 'flex-end'
     }}>
       <Typography className={classNames(expanded ? 'expanded' : 'closed', 'caption')}>
         {text || generateText(300)}
