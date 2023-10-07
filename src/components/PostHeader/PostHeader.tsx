@@ -6,7 +6,7 @@ export const PostHeader: React.FC = () => {
   return (
     <Box position='relative' p={2} display={'flex'} flexDirection={'row'} width={'100%'} alignItems={'center'} >
       <Box display={'flex'} flexDirection={'row'} alignItems='center'>
-        <Avatar sx={{ mr: 1 }} /><Typography>Max</Typography>
+        <Avatar sx={{ mr: 1 }} /><Typography sx={{color: 'white'}}>Max</Typography>
       </Box>
       <Box ml={'auto'}>
         <IconButton>

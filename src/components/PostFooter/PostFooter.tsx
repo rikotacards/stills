@@ -45,7 +45,8 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
           {reactions}
         </div>
 
-        <Box ml="auto">
+        <Box ml="auto" display='flex'  alignItems={'center'}>
+          <Chip sx={{color: 'white'}} variant="outlined" size='small' label={'1/2'}/>
           <IconButton sx={{ color: 'white', mr: 1 }} size="small">
             <EmojiEmotionsIcon />
           </IconButton>
