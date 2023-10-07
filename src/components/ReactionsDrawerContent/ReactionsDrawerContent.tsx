@@ -4,6 +4,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useDrawerContext } from '../../providers/DrawerProvider';
 interface ReactionsDrawerContentProps {
   postId: string;
+  isModal?: boolean;
 }
 export const ReactionsDrawerContent: React.FC<ReactionsDrawerContentProps> = (props) => {
   const {onClose} = useDrawerContext();
