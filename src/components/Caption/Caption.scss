@@ -3,6 +3,8 @@
   cursor: pointer;
   padding: 0 8px;
   display: flex;
+  overflow: hidden;
+
 }
 .closed {
   -webkit-line-clamp: 2;
@@ -10,8 +12,7 @@
   display: -webkit-box;
 }
 .expanded {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
+  overflow: scroll;
 }
 .expanded::-webkit-scrollbar {
   display: none;
