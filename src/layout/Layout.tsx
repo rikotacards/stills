@@ -5,14 +5,16 @@ import { useGetBreakpoints } from '../utils/useGetBreakpoint';
 interface LayoutProps {
   children: React.ReactNode
 }
-export const Layout: React.FC<LayoutProps> = ({children}) => {
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isLessThanMd = useGetBreakpoints('md')
   return (
     <div>
-      {children}
-
-      {isLessThanMd ? <Appbar/> :
-      <SideDrawer/>}
+      <div style={{ display: 'flex' }}>
+        {/* <div style={{ width: isLessThanMd ? 0 : 240 }}></div> */}
+        {children}
+      </div>
+      {isLessThanMd ? <Appbar /> :
+        <SideDrawer />}
     </div>
   )
 }

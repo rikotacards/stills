@@ -7,6 +7,10 @@
     &::-webkit-scrollbar  {
       display: none
     }
+    .emoji {
+      cursor: pointer;
+      color: white;
+    }
   }
 }
 .post-footer {
