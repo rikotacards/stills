@@ -1,6 +1,8 @@
 .add-post-widget {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  border: 1px solid black;
   .text-image-container {
     display: flex;
     align-items: center;

@@ -1,4 +1,4 @@
-import { Box, Chip, IconButton } from "@mui/material";
+import { Box, Chip, IconButton, Tooltip } from "@mui/material";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import React from "react";
 import './PostFooter.scss';
@@ -10,6 +10,8 @@ import { useDrawerContext } from "../../providers/DrawerProvider";
 import { ReactionsDrawerContent } from "../ReactionsDrawerContent/ReactionsDrawerContent";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { CommentsContent } from "../CommentsContent/CommentsContent";
+import { LongPressEventType, useLongPress } from "use-long-press";
+import { AllReactions } from "../AllReactions/AllReactions";
 interface PostFooterProps {
   swiper: any;
   setSecondSwiper: any;
@@ -22,10 +24,27 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
     drawerContext.setRenderComponent(ReactionsDrawerContent)
     drawerContext.onOpen()
   }
+  const onAllReactions = () => {
+    drawerContext.setRenderComponent(AllReactions)
+    drawerContext.onOpen()
+
+  }
+  const callback = React.useCallback(() => {
+    onAllReactions();
+  }, []);
+  const bind = useLongPress(callback, {filterEvents: (event) => true, // All events can potentially trigger long press
+  threshold: 500,
+  captureEvent: true,
+  cancelOnMovement: false,
+  cancelOutsideElement: true,
+  detect: LongPressEventType.Pointer})
+  const handlers = bind('test')
+
   const onCommentClick = () => {
     drawerContext.setRenderComponent(CommentsContent)
     drawerContext.onOpen()
   }
+  
   const captionSlides = captions.map((c, i) => <SwiperSlide style={{
     flexDirection: 'column',
     display: 'flex',
@@ -34,7 +53,9 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
 
     <Caption text={c} />
   </SwiperSlide>)
-  const reactions = react.map(() => <Chip className='emoji' sx={{ mr: 1 }} size="small" variant="outlined" label={`🔥14`} />)
+  const reactions = react.map(() => 
+    <Chip {...handlers} className='emoji' sx={{ mr: 1 }} size="small" variant="outlined" label={`🔥14`} />
+   )
   return (
     <div className='post-footer'>
       <Swiper

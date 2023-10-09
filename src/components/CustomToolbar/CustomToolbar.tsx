@@ -12,7 +12,7 @@ export const CustomToolbar: React.FC<CustomToolbarProps> = ({
 }) => {
   return (
     <Toolbar>
-        <Typography>{title}</Typography>
+        <Typography textTransform={'capitalize'}>{title}</Typography>
         <IconButton sx={{ml: 'auto'}} onClick={onClose}>
               {isModal ? <CloseIcon/> : <KeyboardArrowDownIcon/>}
             </IconButton>

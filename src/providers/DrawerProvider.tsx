@@ -1,5 +1,6 @@
 import {  Dialog, Drawer, Paper} from "@mui/material";
 import React from "react";
+import { modalStyles } from "./DrawerProvider.styles";
 
 interface DrawerData {
   author?: string;
@@ -64,8 +65,8 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
     <DrawerContext.Provider value={context}>
       {children}
       
-      <Dialog sx={{overflow: 'hidden'}}  open={open} onClose={onClose}>
-        <Paper sx={{ overflow: "hidden" }} elevation={3}>
+      <Dialog open={open} onClose={onClose}>
+        <Paper sx={modalStyles} elevation={3}>
        {Render && <Render postId={postId}/>}
         </Paper>
       </Dialog>
