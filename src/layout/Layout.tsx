@@ -2,8 +2,7 @@ import React from 'react';
 import { Appbar } from '../components/Appbar/Appbar';
 import { SideDrawer } from '../components/SideDrawer/SideDrawer';
 import { useGetBreakpoints } from '../utils/useGetBreakpoint';
-import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
-import { drawerWidth } from '../configs/dimensions';
+import {  Box, CssBaseline } from '@mui/material';
 interface LayoutProps {
   children: React.ReactNode
 }

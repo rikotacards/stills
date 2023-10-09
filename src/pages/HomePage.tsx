@@ -1,4 +1,4 @@
-import { Box, Toolbar } from '@mui/material';
+import {  Toolbar } from '@mui/material';
 import React from 'react';
 import { Feed } from '../components/Feed/Feed';
 import './HomePage.scss'

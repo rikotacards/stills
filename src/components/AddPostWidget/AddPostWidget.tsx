@@ -32,7 +32,7 @@ export const AddPostWidget: React.FC<AddPostWidgetProps> = ({index}) => {
 
       </CardContent>
       <CardActions>
-        <Button size='small' onClick={() => AddPostContext.removePost(index)} variant='outlined' fullWidth >Remove <HighlightOffIcon /></Button>
+        <Button size='small' onClick={() => AddPostContext.removePost(index)} variant='outlined' fullWidth >Remove</Button>
       </CardActions>
     </Card>
   )
