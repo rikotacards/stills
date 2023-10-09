@@ -1,6 +1,5 @@
 import React from "react";
 import { PostHeader } from "../PostHeader/PostHeader";
-import { Box } from "@mui/material";
 import { PostFooter } from "../PostFooter/PostFooter";
 import image from "./1.jpg";
 import image2 from "./2.png";

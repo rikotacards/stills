@@ -2,34 +2,42 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 import './App.css'
 import { Layout } from './layout/Layout';
-import { Post } from './components/Post/Post';
 import {
+  BrowserRouter,
   createBrowserRouter,
-  RouterProvider,
+  Route,
+  Routes,
 } from "react-router-dom";
 import { HomePage } from './pages/HomePage';
 import { ExplorePage } from './pages/ExplorePage';
+import { CreatePage } from './pages/CreatePage';
+import { ProfilePage } from './pages/ProfilePage';
+import { AddPostProvider } from './providers/AddPostProvider';
+import { PreviewPage } from './pages/PreviewPage';
+import { NotificationsPage } from './pages/NotificationsPage';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage/>,
-  },
-  {
-    path: '/explore',
-    element: <ExplorePage/>
-  }
-]);
 
 function App() {
 
   return (
     <>
-    <CssBaseline/>
-    <Layout>
-    <RouterProvider router={router} />
+      <CssBaseline />
+      <BrowserRouter>
+        <AddPostProvider>
+          <Layout>
+            <Routes>
+              <Route path='/home' element={<HomePage />} />
+              <Route path='/explore' element={<ExplorePage />} />
+              <Route path='/create' element={<CreatePage />} />
+              <Route path='/notifications' element={<NotificationsPage />} />
 
-      </Layout>
+              <Route path='/create/preview' element={<PreviewPage />} />
+
+              <Route path='/Profile' element={<ProfilePage />} />
+            </Routes>
+          </Layout>
+        </AddPostProvider>
+      </BrowserRouter>
     </>
   )
 }
