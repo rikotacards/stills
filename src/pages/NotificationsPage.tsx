@@ -10,7 +10,11 @@ export const NotificationsPage: React.FC = () => {
   return (
     <div style={{
       display: 'flex',
+      margin: '0 auto',
+      background: 'red',
       flexDirection: 'column',
+      border: '1px solid black',
+      width: '100%'
     }}>
       {notifications}
     </div>

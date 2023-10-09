@@ -25,7 +25,7 @@ export const AddPostWidget: React.FC<AddPostWidgetProps> = ({index}) => {
               id="caption"
               type="text"
               disableUnderline
-              sx={{flexGrow:1, height: '100%',width:'100%', display: 'flex', alignItems: 'flex-start', border: '1px solid black' }}
+              sx={{flexGrow:1, height: '100%',width:'100%', display: 'flex', alignItems: 'flex-start' }}
               />
           </div>
         </div>

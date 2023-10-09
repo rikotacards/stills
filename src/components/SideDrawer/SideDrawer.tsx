@@ -2,7 +2,7 @@ import { Drawer, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar }
 import React from 'react'
 import { menu } from '../../configs/menu';
 import { useNavigate } from 'react-router-dom';
-const drawerWidth = 240;
+export const drawerWidth = 240;
 export const SideDrawer: React.FC = () => {
   const nav = useNavigate();
   const onClick = (to:string) => {
@@ -12,6 +12,7 @@ export const SideDrawer: React.FC = () => {
   return (
     <Drawer
         variant="permanent"
+        anchor='left'
         sx={{
           width: drawerWidth,
           flexShrink: 0,
