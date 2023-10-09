@@ -1,5 +1,10 @@
 .create-page {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  .body {
+    display: flex;
+    flex-direction: column;
+    width: 470px;
+  }
 }

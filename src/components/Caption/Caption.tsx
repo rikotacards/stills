@@ -26,7 +26,7 @@ export const Caption: React.FC<CaptionProps> = ({ text }) => {
       maxHeight: '150px',
       justifyContent: 'flex-end'
     }}>
-      <Typography className={classNames(expanded ? 'expanded' : 'closed', 'caption')}>
+      <Typography fontWeight={500} className={classNames(expanded ? 'expanded' : 'closed', 'caption')}>
         {text || generateText(300)}
       </Typography>
     </div>

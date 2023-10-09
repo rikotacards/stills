@@ -2,25 +2,29 @@ import React from 'react';
 import { Appbar } from '../components/Appbar/Appbar';
 import { SideDrawer } from '../components/SideDrawer/SideDrawer';
 import { useGetBreakpoints } from '../utils/useGetBreakpoint';
-import { Toolbar } from '@mui/material';
+import {  Box, CssBaseline } from '@mui/material';
 interface LayoutProps {
   children: React.ReactNode
 }
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isLessThanMd = useGetBreakpoints('md')
   return (
-    <div style={{
+    <Box sx={{
       display: 'flex',
-      flexDirection:'column',
-      alignItems: 'center',
-      width: '100%',
     }}>
-      <div style={{ display: 'flex' }}>
+      <CssBaseline />
+
+      {!isLessThanMd && <SideDrawer />}
+      <Box component='main'
+        sx={{
+          flexGrow: 1,
+        }}>
         {children}
-      </div>
-      {isLessThanMd ? <><Appbar /></> :
-        <SideDrawer />}
-        <Toolbar/>
-    </div>
+      </Box>
+      {isLessThanMd ? <Appbar /> :
+        <>
+        </>}
+      {/* <Toolbar/> */}
+    </Box>
   )
 }

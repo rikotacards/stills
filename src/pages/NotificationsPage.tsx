@@ -10,9 +10,17 @@ export const NotificationsPage: React.FC = () => {
   return (
     <div style={{
       display: 'flex',
+      alignItems: 'center',
       flexDirection: 'column',
     }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '470px',
+      }}>
+
       {notifications}
+      </div>
     </div>
   )
 }

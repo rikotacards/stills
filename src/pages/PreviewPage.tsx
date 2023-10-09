@@ -23,6 +23,7 @@ export const PreviewPage: React.FC = () => {
             </Toolbar>
             
       </AppBar>
+      <Toolbar/>
 
       <Post />
       

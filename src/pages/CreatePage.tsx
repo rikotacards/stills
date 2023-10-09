@@ -12,10 +12,13 @@ export const CreatePage: React.FC = () => {
   const nav = useNavigate()
   const addPostWidgets = addPostContext.posts.map((post,i)=> <AddPostWidget index={i} key={post.caption + i}/>)
   return (
-    <div style={{margin: '0 auto'}} className='create-page'>
+    <div className='create-page'>
+      <div className='body'>
+
       {addPostWidgets}
       <Button sx={{mb:1}} onClick={addPostContext.addPost} variant='contained'>Add part</Button>
       <Button onClick={() => nav('preview')} variant='contained'>Next</Button>
     </div>
+      </div>
   )
 }

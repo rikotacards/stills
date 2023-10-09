@@ -2,7 +2,7 @@ import { Avatar, Divider, Typography } from "@mui/material";
 import React from "react";
 import './NotificationItem.scss'
 import { Emoji } from "emoji-picker-react";
-import image from '../post/1.jpg'
+import image from '../../assets/1.jpg'
 export const notificationMessage: { [key: string]: string } = {
   0: "reacted with ",
   followed: "started following you",

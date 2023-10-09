@@ -20,11 +20,9 @@ import { NotificationsPage } from './pages/NotificationsPage';
 function App() {
 
   return (
-    <>
-      <CssBaseline />
-      <BrowserRouter>
-        <AddPostProvider>
+    <BrowserRouter>
           <Layout>
+        <AddPostProvider>
             <Routes>
               <Route path='/home' element={<HomePage />} />
               <Route path='/explore' element={<ExplorePage />} />
@@ -35,10 +33,9 @@ function App() {
 
               <Route path='/Profile' element={<ProfilePage />} />
             </Routes>
-          </Layout>
         </AddPostProvider>
+          </Layout>
       </BrowserRouter>
-    </>
   )
 }
 

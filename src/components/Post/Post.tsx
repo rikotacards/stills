@@ -1,8 +1,8 @@
 import React from "react";
 import { PostHeader } from "../PostHeader/PostHeader";
 import { PostFooter } from "../PostFooter/PostFooter";
-import image from "./1.jpg";
-import image2 from "./2.png";
+import image from "../../assets/1.jpg";
+import image2 from "../../assets/2.jpg";
 import { Controller } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
