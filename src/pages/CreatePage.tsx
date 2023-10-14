@@ -3,8 +3,7 @@ import { AddPostWidget } from '../components/AddPostWidget/AddPostWidget';
 import { Button } from '@mui/material';
 import './CreatePage.scss'
 import { useAddPostContext } from '../providers/AddPostProvider';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { ProfilePage } from './ProfilePage';
+import { useNavigate } from 'react-router-dom';
 
 
 export const CreatePage: React.FC = () => {

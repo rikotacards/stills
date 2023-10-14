@@ -15,6 +15,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import { AddPostProvider } from './providers/AddPostProvider';
 import { PreviewPage } from './pages/PreviewPage';
 import { NotificationsPage } from './pages/NotificationsPage';
+import { PostPage } from './pages/PostPage';
 
 
 function App() {
@@ -28,10 +29,10 @@ function App() {
               <Route path='/explore' element={<ExplorePage />} />
               <Route path='/create' element={<CreatePage />} />
               <Route path='/notifications' element={<NotificationsPage />} />
-
               <Route path='/create/preview' element={<PreviewPage />} />
-
-              <Route path='/Profile' element={<ProfilePage />} />
+              <Route path='/post/:postId' element={<PostPage />} />
+              <Route path='/profile' element={<ProfilePage />} />
+              <Route path='/:username' element={<ProfilePage />} />
             </Routes>
         </AddPostProvider>
           </Layout>
