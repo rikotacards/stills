@@ -11,6 +11,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Box sx={{
       display: 'flex',
+      overflow: 'hidden'
     }}>
       <CssBaseline />
 
@@ -18,6 +19,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Box component='main'
         sx={{
           flexGrow: 1,
+          width: '100%'
         }}>
         {children}
       </Box>

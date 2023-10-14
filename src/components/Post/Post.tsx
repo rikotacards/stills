@@ -23,7 +23,7 @@ export const Post: React.FC = () => {
   /></SwiperSlide>)
   return (
     <div
-      style={{borderRadius: 5}}
+      style={{borderRadius: 0}}
       className='post'
     >
 

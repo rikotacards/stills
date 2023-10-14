@@ -54,7 +54,7 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
     <Caption text={c} />
   </SwiperSlide>)
   const reactions = react.map(() => 
-    <Chip {...handlers} className='emoji' sx={{ mr: 1 }} size="small" variant="outlined" label={`🔥14`} />
+    <Chip  {...handlers} className='emoji' sx={{ mr: 1 }} size="small" variant="outlined" label={`🔥14`} />
    )
   return (
     <div className='post-footer'>
