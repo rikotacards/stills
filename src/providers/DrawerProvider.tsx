@@ -1,4 +1,4 @@
-import {  Dialog, Drawer, Paper} from "@mui/material";
+import { Dialog, Drawer, Paper } from "@mui/material";
 import React from "react";
 import { modalStyles } from "./DrawerProvider.styles";
 
@@ -12,7 +12,7 @@ interface DrawerContextProps {
   setComponent: (cName: string) => void;
   setData: (data: DrawerData) => void;
   drawerData: DrawerData;
-  setRenderComponent:  (arg: React.FC<{postId: string, isModal?: boolean;}>) => void
+  setRenderComponent: (arg: React.FC<{ postId: string, isModal?: boolean; }>) => void
 }
 export const DrawerContext = React.createContext({} as DrawerContextProps);
 export const useDrawerContext = () => React.useContext(DrawerContext);
@@ -26,12 +26,12 @@ interface DrawerProviderProps {
 export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
   const { children, postId, enablePopup } = props;
   const [open, setOpen] = React.useState(false);
-  const [Render, setRender] = React.useState<React.FC<{postId:string, isModal?: boolean;}> | null>(null);
+  const [Render, setRender] = React.useState<React.FC<{ postId: string, isModal?: boolean; }> | null>(null);
   const [componentName, setComponentName] =
     React.useState<string>("linkEditForm");
 
   const [drawerData, setDrawerData] = React.useState({} as DrawerData);
-  const setRenderComponent = (arg: React.FC<{postId:string, isModal?: boolean}>) => {
+  const setRenderComponent = (arg: React.FC<{ postId: string, isModal?: boolean }>) => {
     setRender(() => arg)
   }
   const setData = React.useCallback((data: DrawerData) => {
@@ -49,7 +49,7 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
     setOpen(false);
   };
 
-  React.useEffect(() => {}, [componentName]);
+  React.useEffect(() => { }, [componentName]);
 
   const context = {
     onOpen,
@@ -57,29 +57,32 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
     setComponent,
     setData,
     drawerData,
-    setRenderComponent, 
+    setRenderComponent,
 
   };
-  if(enablePopup){
-    return(
-    <DrawerContext.Provider value={context}>
-      {children}
-      
-      <Dialog open={open} onClose={onClose}>
-        <Paper sx={modalStyles} elevation={3}>
-       {Render && <Render postId={postId}/>}
-        </Paper>
-      </Dialog>
-    </DrawerContext.Provider>)
+  if (enablePopup) {
+    return (
+      <DrawerContext.Provider value={context}>
+
+        {children}
+
+        <Dialog open={open} onClose={onClose}>
+          <Paper sx={modalStyles} elevation={3}>
+            {Render && <Render postId={postId} />}
+          </Paper>
+        </Dialog>
+      </DrawerContext.Provider>)
   }
-  
+
   return (
     <DrawerContext.Provider value={context}>
+
       {children}
-      
-      <Drawer sx={{overflow: 'hidden'}} anchor={"bottom"} open={open} onClose={onClose}>
-        <Paper sx={{ overflow: "hidden" }} elevation={3}>
-       {Render && <Render postId={postId} isModal={enablePopup}/>}
+
+      <Drawer PaperProps={{square:false, elevation: 0, style: { backgroundColor: "transparent", borderTopLeftRadius:20, borderTopRightRadius: 20 } }}
+        sx={{ overflow: 'hidden', borderRadius: 9, height: '50%' }} anchor={"bottom"} open={open} onClose={onClose}>
+        <Paper sx={{ backdropFilter: 'blur(20px)', overflow: "hidden" }} elevation={3}>
+          {Render && <Render postId={postId} isModal={enablePopup} />}
         </Paper>
       </Drawer>
     </DrawerContext.Provider>

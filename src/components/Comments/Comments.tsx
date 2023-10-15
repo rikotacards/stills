@@ -4,6 +4,10 @@ const commentsData = [
   {
     username: 'max', 
     comment: 'Lol what'
+  },
+  {
+    username: 'max', 
+    comment: 'Lol what'
   }
 ]
 export const Comments: React.FC = () => {
