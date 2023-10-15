@@ -3,6 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Avatar } from '@mui/material';
+import image from '../assets/1.jpg'
 export const menu = [
   {
     name: 'home',
@@ -29,7 +30,7 @@ export const menu = [
     
       name: 'Profile',
       path: '/profile',
-      icon: <Avatar sx={{height: '30px', width:'30px'}}/>
+      icon: <Avatar src={image} sx={{height: '30px', width:'30px'}}/>
     
   }
 ]

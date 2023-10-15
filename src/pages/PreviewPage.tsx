@@ -13,13 +13,13 @@ export const PreviewPage: React.FC = () => {
   return (
     <div className='preview-page'>
       <AppBar>
-        <Toolbar sx={{background : 'white'}}>
+        <Toolbar>
           <div style={{ width: isLessThanMd ? 0 : 240 }}></div>
           <IconButton onClick={onBack}><ArrowBackIosIcon /></IconButton>
           <Typography color='white'>
             Back</Typography>
           <div style={{ marginLeft: 'auto' }}>
-            <Button variant='contained'><Typography color='white'>Post</Typography></Button>
+            <Button variant='outlined'><Typography sx={{textTransform: 'capitalize'}}color='white'>Post </Typography></Button>
           </div>
         </Toolbar>
 

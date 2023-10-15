@@ -1,26 +1,34 @@
-import { Avatar, Box, Button, Typography } from '@mui/material';
+import { Avatar, Box, Button, Divider, Typography } from '@mui/material';
 import React from 'react';
 import image from '../assets/1.jpg'
 import { GridGallery } from '../components/GridGallery/GridGallery';
 export const ProfilePage: React.FC = () => {
   return (
     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignSelf: 'flex-start', height: '100%'}}>
-      <Box justifyContent={'center'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box justifyContent={'center'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding:1  }}>
+       <div style={{display: 'flex', flexDirection: 'row'}}>
+        
         <Avatar src={image} sx={{ height: 100, width: 100 }} />
-        <Typography>Maxwelldhsu</Typography>
+        
+       </div>
+        <Typography sx={{textTransform: 'capitalize'}}>Maxwelldhsu</Typography>
         <Typography>Making things on the web</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
           <div>
-            <Button sx={{ borderRadius: 20 }} size='small' variant='contained'>Follow</Button>
+            <Button sx={{m: 1, borderRadius: 20, textTransform: 'capitalize' }} size='small' variant='contained'>Follow</Button>
           </div>
           <div>
-            <Button sx={{ borderRadius: 20 }} size='small' variant='contained'>Edit</Button>
+            <Button sx={{m:1, borderRadius: 20, textTransform: 'capitalize' }} size='small' variant='contained'>1245 Followers</Button>
+          </div>
+          <div>
+            <Button sx={{m:1, borderRadius: 20, textTransform: 'capitalize' }} size='small' variant='contained'>1245 Following</Button>
           </div>
 
         </Box>
 
       </Box>
       {/* <Post/> */}
+      <Divider sx={{width: '100%'}}/>
       <GridGallery/>
     </div>
   )

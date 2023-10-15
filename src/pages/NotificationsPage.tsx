@@ -8,16 +8,8 @@ unified: "1f525"
 export const NotificationsPage: React.FC = () => {
   const notifications = sampleData.map((data) => <NotificationItem senderUid={''} receiverUid={''} payloadId={''} postId={''}/>)
   return (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      flexDirection: 'column',
-    }}>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '470px',
-      }}>
+    <div className='notification-page'>
+      <div className='body'>
 
       {notifications}
       </div>
