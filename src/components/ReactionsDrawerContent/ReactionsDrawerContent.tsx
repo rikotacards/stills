@@ -1,4 +1,4 @@
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, Paper } from '@mui/material';
 import React from 'react';
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { quickSelectEmojis } from '../../configs/emojisQuickSelect';
@@ -18,8 +18,12 @@ const emojis = quickSelectEmojis.map((e) => <IconButton>{e.symbol}</IconButton>)
   return (
     <div>
       <CustomToolbar onClose={onClose} title='Reactions' isModal={isModal}/>
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+
+        <div>
+
         {emojis}
+        </div>
         <Button onClick={onShow}>{show? 'Less':'More'}</Button>
       </div>
       {show && <EmojiPicker/>}

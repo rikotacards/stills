@@ -54,7 +54,7 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
     <Caption text={c} />
   </SwiperSlide>)
   const reactions = react.map(() => 
-    <Chip  {...handlers} className='emoji' sx={{ mr: 1 }} size="small" variant="outlined" label={`🔥14`} />
+    <Chip   {...handlers} className='emoji' sx={{ mr: 1,  }} size="small" variant="outlined" label={`🔥14`} />
    )
   return (
     <div className='post-footer'>
@@ -78,12 +78,25 @@ export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper 
         </div>
 
         <Box ml="auto" display='flex'  alignItems={'center'}>
-          <Chip sx={{color: 'white', mr:1}} variant="outlined" size='small' label={'1/2'}/>
+          {/* <Chip
+          clickable
+          size='small'
+          variant='outlined'
+          onClick={onOpenReactionsDrawer} 
+          label={
+            <div style={{display: 'flex'}}>
+
+              <EmojiEmotionsIcon sx={{color: 'white'}} fontSize="small" />
+            </div>
+          }
+
+          /> */}
+          <IconButton onClick={onOpenReactionsDrawer} sx={{ color: 'white', mr: 1 }} size="small">
+          <EmojiEmotionsIcon sx={{color: 'white'}} fontSize="small" />
+
+          </IconButton>
           <IconButton onClick={onCommentClick} sx={{ color: 'white', mr: 1 }} size="small">
             <ChatBubbleOutlineIcon />
-          </IconButton>
-          <IconButton onClick={onOpenReactionsDrawer} sx={{ color: 'white', mr: 1 }} size="small">
-            <EmojiEmotionsIcon />
           </IconButton>
         </Box>
       </Box>

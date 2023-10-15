@@ -13,7 +13,7 @@ export const PreviewPage: React.FC = () => {
   return (
     <div className='preview-page'>
       <AppBar>
-        <Toolbar>
+        <Toolbar sx={{background : 'white'}}>
           <div style={{ width: isLessThanMd ? 0 : 240 }}></div>
           <IconButton onClick={onBack}><ArrowBackIosIcon /></IconButton>
           <Typography color='white'>

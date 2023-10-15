@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Divider, IconButton, Toolbar } from '@mui/material';
 import React from 'react';
 import { menu } from '../../configs/menu';
 import './Appbar.scss'
@@ -8,10 +8,12 @@ export const Appbar: React.FC = () => {
   const menuItems = menu.map((i) => <IconButton onClick={() => nav(i.path)}>{i.icon}</IconButton>)
   return (
     <>
-    <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+    <AppBar position="fixed" color="primary" sx={{background: 'white', top: 'auto', bottom: 0 }}>
+      <Divider/>
       <Toolbar className='toolbar'>
            {menuItems}
       </Toolbar>
+      {/* <div style={{height:25}}/> */}
     </AppBar>
     </>
   )

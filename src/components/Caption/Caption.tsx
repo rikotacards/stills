@@ -1,6 +1,6 @@
 import React from 'react';
 import './Caption.scss';
-import { Typography } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import classNames from 'classnames';
 interface CaptionProps {
   text?: string;

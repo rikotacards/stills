@@ -11,11 +11,18 @@ export const CustomToolbar: React.FC<CustomToolbarProps> = ({
   onClose, isModal, title
 }) => {
   return (
-    <Toolbar>
+    <Toolbar sx={{textAlign: 'center'}}>
+      <div style={{display: 'flex', flex: '1', }}/>
+      <div style={{display: 'flex', flex: '1', justifyContent: 'center'}}>
+
         <Typography textTransform={'capitalize'}>{title}</Typography>
+      </div>
+        <div style={{display: 'flex', flex: '1', }}>
         <IconButton sx={{ml: 'auto'}} onClick={onClose}>
               {isModal ? <CloseIcon/> : <KeyboardArrowDownIcon/>}
             </IconButton>
+
+        </div>
       </Toolbar>
   )
 }

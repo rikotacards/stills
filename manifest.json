@@ -1,0 +1,14 @@
+{
+  "name": "Stills",
+  "short_name": "stills",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "./index.html",
+  "background_color":"red",
+  "scope": "https://192.168.1.82/",
+  "icons": [{
+       "src": "assets/images/logo.png",
+       "sizes": "64x64",
+       "type": "image/png"
+   }]
+}
