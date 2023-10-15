@@ -16,11 +16,15 @@ import { AddPostProvider } from './providers/AddPostProvider';
 import { PreviewPage } from './pages/PreviewPage';
 import { NotificationsPage } from './pages/NotificationsPage';
 import { PostPage } from './pages/PostPage';
+import { ThemeProvider } from '@emotion/react';
+import theme from './configs/theme';
 
 
 function App() {
 
   return (
+    <ThemeProvider theme={theme}>
+
     <BrowserRouter>
           <Layout>
         <AddPostProvider>
@@ -37,6 +41,7 @@ function App() {
         </AddPostProvider>
           </Layout>
       </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

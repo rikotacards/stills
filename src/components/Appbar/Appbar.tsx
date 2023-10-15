@@ -8,7 +8,7 @@ export const Appbar: React.FC = () => {
   const menuItems = menu.map((i) => <IconButton onClick={() => nav(i.path)}>{i.icon}</IconButton>)
   return (
     <>
-    <AppBar position="fixed" color="primary" sx={{background: 'white', top: 'auto', bottom: 0 }}>
+    <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
       <Divider/>
       <Toolbar className='toolbar'>
            {menuItems}

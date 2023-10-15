@@ -23,7 +23,7 @@ export const Post: React.FC = () => {
   /></SwiperSlide>)
   return (
     <div
-      style={{borderRadius: 0}}
+      style={{ borderRadius: 10 }}
       className='post'
     >
 
@@ -32,20 +32,20 @@ export const Post: React.FC = () => {
         modules={[Controller]}
         navigation={true}
         slidesPerView={1}
-        controller={{control:secondSwiper}}
+        controller={{ control: secondSwiper }}
         spaceBetween={0}
-        style={{position: 'absolute', top: '0', zIndex:0, height: '100%', width: '100%' }}
+        style={{ position: 'absolute', top: '0', zIndex: 0, height: '100%', width: '100%' }}
       >
 
         {slides}
 
       </Swiper>
       <PostHeader />
-      <div style={{ height: '100%'}}>
+      <div style={{ height: '100%' }}>
       </div>
-      <PostFooter 
-      swiper={firstSwiper}
-       setSecondSwiper={setSecondSwiper}/>
+      <PostFooter
+        swiper={firstSwiper}
+        setSecondSwiper={setSecondSwiper} />
     </div>
   );
 };
