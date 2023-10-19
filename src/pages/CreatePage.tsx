@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Tab, Tabs, Toolbar } from '@mui/material';
+import {  Tab, Tabs, Toolbar } from '@mui/material';
 import './CreatePage.scss'
 import { NewPost } from '../components/NewPost/NewPost';
 import { DraftsPage } from './DraftsPage';

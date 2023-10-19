@@ -1,27 +1,35 @@
 import React from "react";
 import { PostHeader } from "../PostHeader/PostHeader";
 import { PostFooter } from "../PostFooter/PostFooter";
-import image from "../../assets/1.jpg";
-import image2 from "../../assets/2.jpg";
 import { Controller } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
 import './Post.scss'
 import { Swiper, SwiperSlide } from "swiper/react";
-export const Post: React.FC = () => {
-  const images = [image, image2]
+import { DrawerProvider } from "../../providers/DrawerProvider";
+import { useGetBreakpoints } from "../../utils/useGetBreakpoint";
+import { Content } from "../../firebase/posts";
+interface PostProps {
+  content: Content[]
+  postId: string;
+}
+export const Post: React.FC<PostProps> = ({content,postId}) => {
+  const captions = content.map((p) => p.caption)
   const [firstSwiper, setFirstSwiper] = React.useState(null);
   const [secondSwiper, setSecondSwiper] = React.useState(null);
-  const slides = images.map((i) => <SwiperSlide key={i}><img
+  const isLessThanMd = useGetBreakpoints('md')
+
+  const slides = content.map((p, i) => <SwiperSlide key={i}><img
     style={{
       position: "relative",
       height: "100%",
       width: "100%",
       objectFit: "cover",
     }}
-    src={i}
+    src={p.imagePath}
   /></SwiperSlide>)
   return (
+    <DrawerProvider enablePopup={isLessThanMd} postId={postId}>
     <div
       style={{ borderRadius: 10 }}
       className='post'
@@ -44,8 +52,10 @@ export const Post: React.FC = () => {
       <div style={{ height: '100%' }}>
       </div>
       <PostFooter
+        captions={captions}
         swiper={firstSwiper}
         setSecondSwiper={setSecondSwiper} />
     </div>
+    </DrawerProvider>
   );
 };

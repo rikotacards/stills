@@ -7,7 +7,7 @@ interface AddPostWidgetProps {
   index: number
 }
 export const AddPostWidget: React.FC<AddPostWidgetProps> = ({index}) => {
-  const AddPostContext = useAddPostContext();
+  const {posts, removePost, onTextChange} = useAddPostContext();
   return (
     <Card variant='outlined'  sx={{mb:1}} className='add-post-widget'>
       <CardContent>
@@ -18,20 +18,22 @@ export const AddPostWidget: React.FC<AddPostWidgetProps> = ({index}) => {
             
           <div style={{marginLeft:8}} className='input-area'>
             <Input
-              placeholder={"Write your caption..."}
+              placeholder={"Write your story..."}
               fullWidth
               multiline
               id="caption"
               type="text"
-              disableUnderline
-              sx={{flexGrow:1, height: '100%',width:'100%', display: 'flex', alignItems: 'flex-start' }}
+              value={posts[index].caption}
+              onChange={(e) => {onTextChange(e, index)}}
+            disableUnderline
+              sx={{flexGrow:1, height: '100%', width:'100%', display: 'flex', alignItems: 'flex-start' }}
               />
           </div>
         </div>
 
       </CardContent>
       <CardActions>
-        <Button size='small' onClick={() => AddPostContext.removePost(index)} variant='outlined' fullWidth >Remove</Button>
+        <Button size='small' onClick={() => removePost(index)} variant='outlined' fullWidth >Remove</Button>
       </CardActions>
     </Card>
   )

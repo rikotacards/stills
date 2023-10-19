@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { Timestamp, collection, doc, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,12 +23,4 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 export const db = getFirestore(app)
-
-interface AddPostsProps {
-  uid: string;
-  posts: any[]
-  
-}
-export const addPost = async(arg:AddPostsProps) => {
-  
-}
+export const storage = getStorage(app);

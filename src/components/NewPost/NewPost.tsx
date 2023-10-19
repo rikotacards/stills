@@ -8,7 +8,7 @@ export const NewPost: React.FC = () => {
   const addPostContext = useAddPostContext();
   const nav = useNavigate()
 
-  const addPostWidgets = addPostContext.posts.map((post, i) => <AddPostWidget index={i} key={post.caption + i} />)
+  const addPostWidgets = addPostContext.posts.map((post, i) => <AddPostWidget key={i} index={i} />)
 
   return (
     <><div className='body'>

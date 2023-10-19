@@ -3,10 +3,11 @@ import React from 'react';
 
 export interface PostType {
   imagePath: string;
-  imageUrl?: string; 
+  imageUrl: string; 
   caption: string;
   blobData?: string;
 }
+
 
 interface AddPostContextProps {
   posts: PostType[];
@@ -55,6 +56,7 @@ export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
 
   const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
     , i: number) => {
+      console.log('e',e.target.value)
     const id = e.target.id
     const value = e.target.value
     const postToUpdate = posts[i]
@@ -64,9 +66,9 @@ export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
     setPosts(newState)
   }
 
-  const addImage = (imageUrl: string, i: number, blobData: string) => {
+  const addImage = (imagePath: string, i: number, blobData: string) => {
     const postToUpdate = posts[i]
-    const newPost = {...postToUpdate, imageUrl, blobData}
+    const newPost = {...postToUpdate, imagePath, blobData}
     posts[i] = newPost
     const newState = [...posts]
     setPosts(newState)

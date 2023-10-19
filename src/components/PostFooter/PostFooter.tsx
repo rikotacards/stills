@@ -15,10 +15,10 @@ import { AllReactions } from "../AllReactions/AllReactions";
 interface PostFooterProps {
   swiper: any;
   setSecondSwiper: any;
+  captions: string[];
 }
-const captions = ['hi', '']
 const react = [1, 2, 3, 4, 5, 6, 7, 8, 4, 4, 4, 4]
-export const PostFooter: React.FC<PostFooterProps> = ({ swiper, setSecondSwiper }) => {
+export const PostFooter: React.FC<PostFooterProps> = ({captions, swiper, setSecondSwiper }) => {
   const drawerContext = useDrawerContext();
   const onOpenReactionsDrawer = () => {
     drawerContext.setRenderComponent(ReactionsDrawerContent)
