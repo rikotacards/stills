@@ -29,7 +29,7 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
     src={p.imagePath}
   /></SwiperSlide>)
   return (
-    <DrawerProvider enablePopup={isLessThanMd} postId={postId}>
+    <DrawerProvider enablePopup={!isLessThanMd} postId={postId}>
     <div
       style={{ borderRadius: 10 }}
       className='post'
