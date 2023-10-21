@@ -1,8 +1,7 @@
 import { Chip } from '@mui/material';
 import React from 'react';
-import { getReactionsByPostId } from '../../firebase/reactions';
 import { Emoji } from 'emoji-picker-react';
-import { LongPressEventType, LongPressPointerHandlers, useLongPress } from 'use-long-press';
+import { LongPressEventType, useLongPress } from 'use-long-press';
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { AllReactions } from '../AllReactions/AllReactions';
 import { useReactionsContext } from '../../providers/ReactionsProvider';
@@ -11,7 +10,6 @@ interface ReactionsProps {
   postId: string;
 }
 export const Reactions: React.FC<ReactionsProps> = ({ postId }) => {
-  const [reactionsData, setReactions] = React.useState<[string, number][] | undefined>()
   const drawerContext = useDrawerContext();
   const {displayedReactions} = useReactionsContext();
   const onAllReactions = () => {

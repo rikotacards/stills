@@ -8,8 +8,13 @@ interface ReactionsProviderProps {
   children: React.ReactNode;
   postId: string;
 }
+
+export interface Reactions {
+  [key:string]: {[key: string]: string}
+}
+
 export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, children}) => {
-  const [displayedReactions, setDisplayedReactions] = React.useState({})
+  const [displayedReactions, setDisplayedReactions] = React.useState<Reactions>({})
   React.useEffect(() => {
     getReactionsByPostId({postId}).then((res) => {
       setDisplayedReactions(res)
@@ -18,7 +23,6 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
   }, [])
   const onAdd = async({uid, unified}:{uid: string, unified: string}) => {
     try {
-      console.log('onAddHIT')
       await addReaction({
         postId: postId || 'E3UBW1nLq4vQzZRgXMqj',
         uid,
@@ -28,20 +32,15 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
       if(newState[unified]===undefined){
         newState[unified] = {[uid]:uid}
         setDisplayedReactions(newState)
-        console.log('undefined', newState)
         return
       }
       if(newState[unified][uid]){
         delete newState[unified][uid]
         setDisplayedReactions(newState)
-
-        console.log('existi', newState)
         return
       } else {
         newState[unified][uid] = uid
         setDisplayedReactions(newState)
-
-        console.log('addingnew', newState)
       }
       
 

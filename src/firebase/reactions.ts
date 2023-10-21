@@ -35,9 +35,12 @@ export const addReaction = async({postId, emojiId, uid}: {postId: string, emojiI
 interface IgetReactionsByPostId {
   postId: string;
 }
-export const getReactionsByPostId = async(args: IgetReactionsByPostId) => {
+
+export interface ReactionsResponse {
+  [key:string]: {[key: string]: string}
+}
+
+export const getReactionsByPostId = async(args: IgetReactionsByPostId): Promise<ReactionsResponse> => {
   const querySnapshot = await getDoc(doc(db, 'reactions', args.postId))
-  console.log(querySnapshot.data())
-  return querySnapshot.data()
-  
+  return querySnapshot?.data() || {}
 }
