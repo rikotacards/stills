@@ -8,7 +8,7 @@ export const SideDrawer: React.FC = () => {
   const onClick = (to:string) => {
     nav(to)
   }
-  const items = menu.map((i) => <ListItem><ListItemButton onClick={() => onClick(i.path)}><ListItemIcon>{i.icon}</ListItemIcon><ListItemText sx={{textTransform: 'capitalize'}} primary={i.name}/></ListItemButton></ListItem>)
+  const items = menu.map((i) => <ListItem key={i.name}><ListItemButton onClick={() => onClick(i.path)}><ListItemIcon>{i.icon}</ListItemIcon><ListItemText sx={{textTransform: 'capitalize'}} primary={i.name}/></ListItemButton></ListItem>)
   return (
     <Drawer
         variant="permanent"

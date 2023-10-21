@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { DrawerProvider } from "../../providers/DrawerProvider";
 import { useGetBreakpoints } from "../../utils/useGetBreakpoint";
 import { Content } from "../../firebase/posts";
+import { ReactionsProvider } from "../../providers/ReactionsProvider";
 interface PostProps {
   content: Content[]
   postId: string;
@@ -29,6 +30,7 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
     src={p.imagePath}
   /></SwiperSlide>)
   return (
+    <ReactionsProvider postId={postId}>
     <DrawerProvider enablePopup={!isLessThanMd} postId={postId}>
     <div
       style={{ borderRadius: 10 }}
@@ -52,10 +54,12 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
       <div style={{ height: '100%' }}>
       </div>
       <PostFooter
+      postId={postId}
         captions={captions}
         swiper={firstSwiper}
         setSecondSwiper={setSecondSwiper} />
     </div>
     </DrawerProvider>
+    </ReactionsProvider>
   );
 };
