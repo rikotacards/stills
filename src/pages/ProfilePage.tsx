@@ -2,7 +2,15 @@ import { Avatar, Box, Button, Divider, Typography } from '@mui/material';
 import React from 'react';
 import image from '../assets/1.jpg'
 import { GridGallery } from '../components/GridGallery/GridGallery';
+import { getPostsByUid } from '../firebase/posts';
+import { sampleUid } from '../configs/sampleData';
 export const ProfilePage: React.FC = () => {
+  const [posts, setPosts]=React.useState([])
+  React.useEffect(() => {
+    getPostsByUid(sampleUid).then((res) => {
+      setPosts(res);
+    })
+  })
   return (
     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignSelf: 'flex-start', height: '100%'}}>
       <Box justifyContent={'center'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding:1  }}>
@@ -29,7 +37,7 @@ export const ProfilePage: React.FC = () => {
       </Box>
       {/* <Post/> */}
       <Divider sx={{width: '100%'}}/>
-      <GridGallery/>
+      <GridGallery posts={posts}/>
     </div>
   )
 }
