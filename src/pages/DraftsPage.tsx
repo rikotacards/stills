@@ -1,10 +1,10 @@
 import React from 'react';
-import { GridGallery } from '../components/GridGallery/GridGallery';
+import { NewPost } from '../components/NewPost/NewPost';
 
 export const DraftsPage: React.FC = () => {
   return (
     <div>
-      <GridGallery/>
+      <NewPost/>
     </div>
   )
 }

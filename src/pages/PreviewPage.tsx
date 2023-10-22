@@ -11,15 +11,15 @@ import { sampleUid } from '../configs/sampleData';
 export const PreviewPage: React.FC = () => {
   const nav = useNavigate();
   const {posts} = useAddPostContext();
-  console.log('po', posts)
   const isLessThanMd = useGetBreakpoints('md')
-  const onPost = () => {
-    addPost(
+  const onPost = async() => {
+   await addPost(
       {
         uid: sampleUid,
         posts
       }
     )
+    nav('/home')
   }
   const onBack = () => nav(-1)
   return (
