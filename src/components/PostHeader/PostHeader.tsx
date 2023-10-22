@@ -1,17 +1,23 @@
 import { MoreHoriz } from '@mui/icons-material';
-import { Avatar, Box, IconButton, Typography } from '@mui/material';
+import { Avatar, Box, Chip, IconButton, Typography } from '@mui/material';
 import React from 'react';
-
+import './PostHeader.scss'
+import image from '../../assets/1.jpg'
 export const PostHeader: React.FC = () => {
   return (
-    <Box position='relative' p={1} display={'flex'} flexDirection={'row'} width={'100%'} alignItems={'center'} >
+    <Box className='post-header' position='relative' pl={1} display={'flex'} flexDirection={'row'} width={'100%'} alignItems={'center'} >
       <Box display={'flex'} flexDirection={'row'} alignItems='center'>
-        <Avatar sx={{ mr: 1, height: 35, width:35 }} /><Typography sx={{color: 'white'}}>Max</Typography>
+        <Avatar src={image} sx={{ mr: 1, height: 30, width:30 }} />
+        <Typography sx={{color: 'white', fontWeight:'700'}}>
+          Max
+          </Typography>
       </Box>
-      <Box ml={'auto'}>
+      <Box ml={'auto'} mr={1}>
         <IconButton>
         <MoreHoriz />
         </IconButton>
+        <Chip className='parts-progress' size='small' label={'1/4'}/>
+
       </Box>
     </Box>
   )

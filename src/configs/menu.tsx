@@ -21,7 +21,9 @@ const CreateButton = () => {
 const CustomIconButton = (Component: React.FC) => {
   return (
     <IconButton sx={{
-      background: 'rgba(0, 0, 0, 0.3)', backdropFilter: 'blur(5px)',
+      background: 'rgba(0, 0, 0, 0)', 
+      backdropFilter: 'blur(50px)',
+      border: '1px solid white'
     }}>
       {<Component />}
     </IconButton>

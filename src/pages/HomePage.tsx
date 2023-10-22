@@ -4,6 +4,7 @@ import './HomePage.scss'
 import { PostResponse, getPostsByUid } from '../firebase/posts';
 import { sampleUid } from '../configs/sampleData';
 import { Post } from '../components/Post/Post';
+import { PostNew } from '../components/Post/PostNew';
 export const HomePage: React.FC = () => {
   const [posts, setPosts] = React.useState<PostResponse[]>([])
  

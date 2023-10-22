@@ -4,7 +4,7 @@ import { PostFooter } from "../PostFooter/PostFooter";
 import { Controller } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
-import './Post.scss'
+import './PostNew.scss'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { DrawerProvider } from "../../providers/DrawerProvider";
 import { useGetBreakpoints } from "../../utils/useGetBreakpoint";
@@ -14,7 +14,7 @@ interface PostProps {
   content: Content[]
   postId: string;
 }
-export const Post: React.FC<PostProps> = ({content,postId}) => {
+export const PostNew: React.FC<PostProps> = ({content,postId}) => {
   const captions = content.map((p) => p.caption)
   const [firstSwiper, setFirstSwiper] = React.useState(null);
   const [secondSwiper, setSecondSwiper] = React.useState(null);
@@ -33,9 +33,11 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
     <ReactionsProvider postId={postId}>
     <DrawerProvider enablePopup={!isLessThanMd} postId={postId}>
     <div
-      style={{ borderRadius: 20 }}
+      style={{ borderRadius: 0 }}
       className='post'
     >
+            <PostHeader />
+
 
       <Swiper
         onSwiper={(swiper) => setFirstSwiper(swiper)}
@@ -44,15 +46,14 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
         slidesPerView={1}
         controller={{ control: secondSwiper }}
         spaceBetween={0}
-        style={{ position: 'absolute', top: '0', zIndex: 0, height: '100%', width: '100%' }}
+        style={{ position: 'relative', top: '0', zIndex: 0, height: '100%', width: '100%' }}
       >
 
         {slides}
 
       </Swiper>
-      <PostHeader />
-      <div style={{ height: '100%' }}>
-      </div>
+      {/* <div style={{border:'1px solid white',  height: '100%' }}>
+      </div> */}
       <PostFooter
       postId={postId}
         captions={captions}

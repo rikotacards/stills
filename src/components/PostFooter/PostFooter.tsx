@@ -42,6 +42,7 @@ export const PostFooter: React.FC<PostFooterProps> = ({captions, swiper, setSeco
  
   return (
     <div className='post-footer'>
+
       <Swiper
         className='swiper-custom'
         modules={[Controller]}
@@ -82,6 +83,7 @@ export const PostFooter: React.FC<PostFooterProps> = ({captions, swiper, setSeco
           <IconButton onClick={onCommentClick} sx={{ color: 'white', mr: 1 }} size="small">
             <ChatBubbleOutlineIcon />
           </IconButton>
+          
         </Box>
       </Box>
     </div>
