@@ -6,15 +6,22 @@ import { Avatar, IconButton, styled } from '@mui/material';
 import image from '../assets/1.jpg'
 import { useDrawerContext } from '../providers/DrawerProvider';
 import { CreatePage } from '../pages/CreatePage';
+import { NewPostContent } from '../components/NewPostContent/NewPostContent';
+import React from 'react';
 
-const CreateButton = () => {
+const CreateButton: React.FC = () => {
   const { onOpen, setRenderComponent } = useDrawerContext();
   const onClick = () => {
-    setRenderComponent(CreatePage)
+    console.log('his')
+    setRenderComponent(NewPostContent)
     onOpen();
   }
   return (
-    <IconButton onClick={onClick}><AddIcon /></IconButton>
+    <IconButton sx={{
+      background: 'rgba(0, 0, 0, 0)', 
+      backdropFilter: 'blur(50px)',
+      border: '1px solid white'
+    }} onClick={onClick}><AddIcon /></IconButton>
   )
 }
 
@@ -44,9 +51,9 @@ export const menu = [
   },
   {
     name: 'create',
-    path: '/create',
+    path: '#',
     // icon: <CreateButton/>
-    icon: CustomIconButton(AddIcon)
+    icon: <CreateButton/>
   },
   {
     name: 'notifications',

@@ -8,7 +8,10 @@ import { useGetBreakpoints } from '../utils/useGetBreakpoint';
 import { useAddPostContext } from '../providers/AddPostProvider';
 import { addPost } from '../firebase/posts';
 import { sampleUid } from '../configs/sampleData';
-export const PreviewPage: React.FC = () => {
+interface PreviewPageProps {
+  onBack?: () => void;
+}
+export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
   const nav = useNavigate();
   const {posts} = useAddPostContext();
   const isLessThanMd = useGetBreakpoints('md')
@@ -21,13 +24,13 @@ export const PreviewPage: React.FC = () => {
     )
     nav('/home')
   }
-  const onBack = () => nav(-1)
+  const back = onBack ? onBack : () => nav(-1)
   return (
     <div className='preview-page'>
       <AppBar>
         <Toolbar>
           <div style={{ width: isLessThanMd ? 0 : 240 }}></div>
-          <IconButton onClick={onBack}><ArrowBackIosIcon /></IconButton>
+          <IconButton onClick={back}><ArrowBackIosIcon /></IconButton>
           <Typography color='white'>
             Back</Typography>
           <div style={{ marginLeft: 'auto' }}>

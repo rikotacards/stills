@@ -15,7 +15,7 @@ export const UploadImageThumbnail: React.FC<UploadImageThumbnailProps> = ({
   const [imageURLS, setImageURLs] = React.useState([]);
   const hasImage = !!addPostContext.posts[index]?.imageUrl?.length || !!imageURLS.length
   const inputRef = React.useRef<HTMLInputElement>(null);
-  
+  console.log(addPostContext)
   React.useEffect(() => {
     if (images.length < 1) return;
     const newImageUrls: any = [];
@@ -55,7 +55,7 @@ export const UploadImageThumbnail: React.FC<UploadImageThumbnailProps> = ({
       objectFit: "contain",
       
     }} alt={''}
-    src={addPostContext.posts[index].imageUrl || imageURLS[0]} />
+    src={addPostContext.posts[index].imagePath || imageURLS[0]} />
   return (
       <Card  className={'imageCard'}>
         <CardActionArea className='card-action' onClick={handleClick}>

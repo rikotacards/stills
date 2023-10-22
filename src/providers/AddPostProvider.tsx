@@ -16,6 +16,7 @@ interface AddPostContextProps {
   addImage: (imageUrl: string, index: number, blobData:string) => void;
   removePost: (index:number) => void;
   onPostClick: () => void;
+  setFromDraft:(draft:[{imageUrl:string, caption:string, blobData: string, imagePath: string}]) => void;
 }
 
 export const AddPostContext = React.createContext({} as AddPostContextProps)
@@ -26,10 +27,13 @@ interface PostContextProps {
 }
 
 export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
-  const [posts, setPosts] = React.useState([{imageUrl:'', caption:'', blobData: '', imagePath: ''}])
+  const [posts, setPosts] = React.useState([{imageUrl:'', caption:'', imagePath: ''}])
   // const auth = useAuth();
   // const route = useRouter();
   // const {data} = useGetUserInfo(auth?.user?.uid as string)
+  const setFromDraft = (draft:[{imageUrl:string, caption:string, blobData: string, imagePath: string}]) => {
+    setPosts(draft)
+  }
   const onPostClick = async() => {
     return
   //   if(!auth?.user?.uid){
@@ -99,7 +103,8 @@ export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
     onTextChange,
     addImage,
     removePost,
-    onPostClick
+    onPostClick,
+    setFromDraft
   }
 
   return (

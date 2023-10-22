@@ -103,10 +103,6 @@ export const saveDraft = async(args:AddPostsProps) => {
         });
     });
 
-    // Init Reactions doc in firestore,
-    await setDoc(doc(db, "reactions", docRef.id), {
-      "2764-fe0f": {},
-    });
   } catch (e) {
     return e;
   }
