@@ -14,12 +14,12 @@ export const Appbar: React.FC = () => {
   }
   return (
     <>
-    <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
-      <Divider/>
+    <AppBar position="fixed" color="primary" sx={{background:'transparent', top: 'auto', bottom: 0 }}>
+      {/* <Divider/> */}
       <Toolbar className='toolbar'>
            {menuItems}
       </Toolbar>
-      {/* <div style={{height:25}}/> */}
+      <div style={{height:25}}/>
     </AppBar>
     </>
   )

@@ -3,7 +3,7 @@ import React from 'react';
 
 export interface PostType {
   imagePath: string;
-  imageUrl: string; 
+  imageUrl?: string; 
   caption: string;
   blobData?: string;
 }
@@ -12,10 +12,14 @@ export interface PostType {
 interface AddPostContextProps {
   posts: PostType[];
   addPost: () => void;
+  clearPost: () => void;
   onTextChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, i: number) => void;
   addImage: (imageUrl: string, index: number, blobData:string) => void;
   removePost: (index:number) => void;
   onPostClick: () => void;
+  draftId?: string;
+  setDraftId: (draftId: string) => void;
+  setFromDraft:(draft: PostType[]) => void;
 }
 
 export const AddPostContext = React.createContext({} as AddPostContextProps)
@@ -26,10 +30,21 @@ interface PostContextProps {
 }
 
 export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
-  const [posts, setPosts] = React.useState([{imageUrl:'', caption:'', blobData: '', imagePath: ''}])
+  const [posts, setPosts] = React.useState<PostType[]>([{imageUrl:'', caption:'', imagePath: '', blobData: ''}])
+  const [draftId, setId] = React.useState<string | undefined>()
+  const setDraftId = (draftId: string) => {
+    setId(draftId)
+  }
+  const clearPost = () => {
+    setId(undefined)
+    setPosts([{imageUrl:'', caption:'', imagePath: '', blobData: ''}])
+  }
   // const auth = useAuth();
   // const route = useRouter();
   // const {data} = useGetUserInfo(auth?.user?.uid as string)
+  const setFromDraft = (draft:PostType[]) => {
+    setPosts(draft)
+  }
   const onPostClick = async() => {
     return
   //   if(!auth?.user?.uid){
@@ -95,11 +110,15 @@ export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
 
   const addPostFunctions = {
     posts,
+    draftId, 
+    setDraftId,
     addPost,
     onTextChange,
     addImage,
     removePost,
-    onPostClick
+    onPostClick,
+    setFromDraft,
+    clearPost
   }
 
   return (

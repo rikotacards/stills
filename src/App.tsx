@@ -18,6 +18,7 @@ import { NotificationsPage } from './pages/NotificationsPage';
 import { PostPage } from './pages/PostPage';
 import { ThemeProvider } from '@emotion/react';
 import theme from './configs/theme';
+import { DrawerProvider } from './providers/DrawerProvider';
 
 
 function App() {
@@ -25,23 +26,25 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
 
-    <BrowserRouter>
-          <Layout>
+      <BrowserRouter>
         <AddPostProvider>
-            <Routes>
-              <Route path='/home' element={<HomePage />} />
-              <Route path='/explore' element={<ExplorePage />} />
-              <Route path='/create' element={<CreatePage />} />
-              <Route path='/notifications' element={<NotificationsPage />} />
-              <Route path='/create/preview' element={<PreviewPage />} />
-              <Route path='/post/:postId' element={<PostPage />} />
-              <Route path='/profile' element={<ProfilePage />} />
-              <Route path='/:username' element={<ProfilePage />} />
-            </Routes>
-        </AddPostProvider>
-          </Layout>
+          <DrawerProvider>
+            <Layout>
+              <Routes>
+                <Route path='/home' element={<HomePage />} />
+                <Route path='/explore' element={<ExplorePage />} />
+                <Route path='/create' element={<CreatePage />} />
+                <Route path='/notifications' element={<NotificationsPage />} />
+                <Route path='/create/preview' element={<PreviewPage />} />
+                <Route path='/post/:postId' element={<PostPage />} />
+                <Route path='/profile' element={<ProfilePage />} />
+                <Route path='/:username' element={<ProfilePage />} />
+              </Routes>
+            </Layout>
+          </DrawerProvider>
+    </AddPostProvider>
       </BrowserRouter>
-    </ThemeProvider>
+    </ThemeProvider >
   )
 }
 

@@ -6,28 +6,37 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from 'react-router-dom';
 import { useGetBreakpoints } from '../utils/useGetBreakpoint';
 import { useAddPostContext } from '../providers/AddPostProvider';
-import { addPost } from '../firebase/posts';
+import { addPost, deleteDraftByDraftId } from '../firebase/posts';
 import { sampleUid } from '../configs/sampleData';
-export const PreviewPage: React.FC = () => {
+import { useDrawerContext } from '../providers/DrawerProvider';
+interface PreviewPageProps {
+  onBack?: () => void;
+}
+export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
   const nav = useNavigate();
-  const {posts} = useAddPostContext();
-  console.log('po', posts)
+  const {posts, draftId, clearPost} = useAddPostContext();
+  const {onClose} = useDrawerContext();
   const isLessThanMd = useGetBreakpoints('md')
-  const onPost = () => {
-    addPost(
+  const onPost = async() => {
+    onClose()
+   await addPost(
       {
         uid: sampleUid,
-        posts
+        posts, 
+        draftId
       }
     )
+    nav('/home')
+    clearPost()
+   draftId &&  deleteDraftByDraftId(draftId)
   }
-  const onBack = () => nav(-1)
+  const back = onBack ? onBack : () => nav(-1)
   return (
     <div className='preview-page'>
       <AppBar>
         <Toolbar>
           <div style={{ width: isLessThanMd ? 0 : 240 }}></div>
-          <IconButton onClick={onBack}><ArrowBackIosIcon /></IconButton>
+          <IconButton onClick={back}><ArrowBackIosIcon /></IconButton>
           <Typography color='white'>
             Back</Typography>
           <div style={{ marginLeft: 'auto' }}>

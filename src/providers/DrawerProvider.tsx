@@ -43,6 +43,7 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
   }, []);
 
   const onOpen = () => {
+   
     setOpen(true);
   };
   const onClose = () => {

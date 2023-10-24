@@ -1,34 +1,44 @@
 import React from 'react';
 import './Caption.scss';
-import { Avatar, Typography } from '@mui/material';
+import image from '../../assets/1.jpg'
+import { Avatar, Chip, Typography } from '@mui/material';
 import classNames from 'classnames';
+import { PostHeader } from '../PostHeader/PostHeader';
 interface CaptionProps {
   text?: string;
 }
 
-const generateText = (length: number) => {
-  let start = ''
-  for (let i = 0; i < length; i++) {
-    start = start + i + ' random'
-  }
-  return start
-}
 
 export const Caption: React.FC<CaptionProps> = ({ text }) => {
   const [expanded, setOn] = React.useState(false);
   const onClick = () => {
     setOn(!expanded);
   }
+  if (text?.length === 0) {
+    return null
+  }
   return (
-    <div onClick={onClick} style={{
-      display: 'flex', 
-      flexDirection: 'column',
-      maxHeight: '150px',
-      justifyContent: 'flex-end'
-    }}>
-      <Typography fontWeight={500} className={classNames(expanded ? 'expanded' : 'closed', 'caption')}>
-        {text || generateText(300)}
-      </Typography>
+    <div>
+
+
+      <div onClick={onClick} style={{
+        display: 'flex',
+        flexDirection: 'row',
+        maxHeight: '150px',
+        alignItems: 'center',
+        justifyContent: 'flex-start'
+      }}>
+
+
+        <div>
+          <div style={{ marginLeft: 8, display: 'flex', flexDirection: 'row' }}>
+            <Typography variant='caption' fontWeight={'bold'}>Maxwelldhsu</Typography>
+          </div>
+          <Typography sx={{ textShadow: 'grey 0px 0px 3px' }} variant='body2' className={classNames(expanded ? 'expanded' : 'closed', 'caption')}>
+            {text}
+          </Typography>
+        </div>
+      </div>
     </div>
   )
 }
