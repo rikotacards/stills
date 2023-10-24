@@ -13,7 +13,7 @@ export const CommentsContent: React.FC<CommentsContentProps> = ({
   const {onClose} = useDrawerContext();
   return (
     <div>
-      <CustomToolbar isModal={isModal} title='Comments' isModal={isModal} onClose={onClose} />
+      <CustomToolbar title='Comments' isModal={isModal} onClose={onClose} />
       <div style={{padding: 8}}>
       <Comments/>
       </div>
