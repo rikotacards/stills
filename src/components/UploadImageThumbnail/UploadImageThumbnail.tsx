@@ -5,17 +5,18 @@ import { useAddPostContext } from "../../providers/AddPostProvider";
 import './UploadImageThumbnail.scss'
 interface UploadImageThumbnailProps {
   index: number;
+  imagePath?: string;
 }
 
 export const UploadImageThumbnail: React.FC<UploadImageThumbnailProps> = ({
-  index
+  index,
+  imagePath
 }) => {
   const [images, setImages] = React.useState([] as any);
   const addPostContext = useAddPostContext();
-  const [imageURLS, setImageURLs] = React.useState([]);
+  const [imageURLS, setImageURLs] = React.useState(imagePath?.length ? [imagePath] : []);
   const hasImage = !!addPostContext.posts[index]?.imageUrl?.length || !!imageURLS.length
   const inputRef = React.useRef<HTMLInputElement>(null);
-  console.log(addPostContext)
   React.useEffect(() => {
     if (images.length < 1) return;
     const newImageUrls: any = [];
@@ -37,7 +38,9 @@ export const UploadImageThumbnail: React.FC<UploadImageThumbnailProps> = ({
     }
     )
     setImageURLs(newImageUrls);
-
+    return () => {
+      setImages([])
+    }
   }, [images, addPostContext, index]);
 
   const onImageChange = (e: any) => {

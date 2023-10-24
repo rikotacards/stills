@@ -6,23 +6,29 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from 'react-router-dom';
 import { useGetBreakpoints } from '../utils/useGetBreakpoint';
 import { useAddPostContext } from '../providers/AddPostProvider';
-import { addPost } from '../firebase/posts';
+import { addPost, deleteDraftByDraftId } from '../firebase/posts';
 import { sampleUid } from '../configs/sampleData';
+import { useDrawerContext } from '../providers/DrawerProvider';
 interface PreviewPageProps {
   onBack?: () => void;
 }
 export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
   const nav = useNavigate();
-  const {posts} = useAddPostContext();
+  const {posts, draftId, clearPost} = useAddPostContext();
+  const {onClose} = useDrawerContext();
   const isLessThanMd = useGetBreakpoints('md')
   const onPost = async() => {
+    onClose()
    await addPost(
       {
         uid: sampleUid,
-        posts
+        posts, 
+        draftId
       }
     )
     nav('/home')
+    clearPost()
+   draftId &&  deleteDraftByDraftId(draftId)
   }
   const back = onBack ? onBack : () => nav(-1)
   return (

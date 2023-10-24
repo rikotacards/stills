@@ -3,13 +3,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { Button, Card, CardContent, Dialog, IconButton, Toolbar, Typography } from '@mui/material';
-import { CustomToolbar } from '../CustomToolbar/CustomToolbar';
 import { NewPost } from '../NewPost/NewPost';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PreviewPage } from '../../pages/PreviewPage';
-import { Preview } from '@mui/icons-material';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { saveDraft } from '../../firebase/posts';
+import { deleteDraftByDraftId, saveDraft } from '../../firebase/posts';
 import { useAddPostContext } from '../../providers/AddPostProvider';
 import { sampleUid } from '../../configs/sampleData';
 import { DraftsPage } from '../../pages/DraftsPage';
@@ -24,7 +21,7 @@ export const NewPostContent: React.FC = () => {
   const closeModal = () => {
     setOpen(false)
   }
-  const {posts} = useAddPostContext();
+  const {posts, draftId,clearPost} = useAddPostContext();
   const [page, setPage] = React.useState(0);
   const nav = (page: number) => {
     console.log('setting', page)
@@ -38,7 +35,10 @@ export const NewPostContent: React.FC = () => {
   }
   const onDiscard = () => {
     setOpen(false);
-    onClose()
+    clearPost();
+    draftId && deleteDraftByDraftId(draftId)
+
+    onClose();
   }
   const pages = [<NewPost goto={nav} onNext={onNext}/>, <PreviewPage onBack={onPrev}/>, <DraftsPage nav={nav}/>]
   return (
@@ -68,7 +68,7 @@ export const NewPostContent: React.FC = () => {
               If you go back now, this post will be discarded
             </Typography>
             <Button color='error' sx={{ mb: 1 }} variant='outlined' fullWidth onClick={onDiscard}>Discard</Button>
-            <Button onClick={() => saveDraft({uid: sampleUid, posts})} sx={{ mb: 1 }} variant='contained' fullWidth>Save Draft</Button>
+            <Button onClick={() => saveDraft({uid: sampleUid, posts, draftId})} sx={{ mb: 2 }} variant='contained' fullWidth>Save Draft</Button>
             <Button onClick={onClose} variant='contained' fullWidth>Cancel</Button>
 
           </CardContent>

@@ -1,7 +1,7 @@
 import React from 'react';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import './AddPostWidget.scss';
-import { Button, Card, CardActions, CardContent, CardMedia, IconButton, Input, Paper } from '@mui/material';
+import {  Card, CardActions, CardContent, IconButton, Input } from '@mui/material';
 import { useAddPostContext } from '../../providers/AddPostProvider';
 import { UploadImageThumbnail } from '../UploadImageThumbnail/UploadImageThumbnail';
 interface AddPostWidgetProps {
@@ -14,7 +14,7 @@ export const AddPostWidget: React.FC<AddPostWidgetProps> = ({ index }) => {
       <CardContent>
         <div className='text-image-container'>
           <div style={{ height: 100, width: '30%' }}>
-            <UploadImageThumbnail index={index} />
+            <UploadImageThumbnail imagePath={posts[index].imagePath} index={index} />
           </div>
 
           <div style={{ marginLeft: 8 }} className='input-area'>
@@ -33,13 +33,13 @@ export const AddPostWidget: React.FC<AddPostWidgetProps> = ({ index }) => {
         </div>
 
       </CardContent>
-      <CardActions>
-        {index!== 0 && <div style={{marginLeft: 'auto'}}>
+      {index!== 0 && <CardActions>
+         <div style={{marginLeft: 'auto'}}>
         <IconButton onClick={() => removePost(index)}>
           <DeleteForeverIcon/>
         </IconButton>
-        </div>}
-      </CardActions>
+        </div>
+      </CardActions>}
     </Card>
   )
 }

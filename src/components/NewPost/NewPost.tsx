@@ -20,8 +20,8 @@ export const NewPost: React.FC<NewPostProps> = ({onNext, goto}) => {
 
       {addPostWidgets}
       <Button sx={{ mb: 1 }} onClick={addPostContext.addPost} variant='contained'>Add part</Button>
-      <Button sx={{ mb: 1 }} onClick={onNext ? onNext : () => nav('/preview')} variant='contained'>Next</Button>
-      <Button sx={{ mb: 1 }} onClick={goto ? () => goto(2) : () => nav('/drafts')} variant='contained'>Drafts</Button>
+      <Button sx={{ mb: 3 }} onClick={onNext ? onNext : () => nav('/preview')} variant='contained'>Next</Button>
+      <Button sx={{ mb: 1 }} onClick={goto ? () => goto(2) : () => nav('/drafts')} variant='outlined'>Drafts</Button>
 
 
 

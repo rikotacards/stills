@@ -19,7 +19,13 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
   const [firstSwiper, setFirstSwiper] = React.useState(null);
   const [secondSwiper, setSecondSwiper] = React.useState(null);
   const isLessThanMd = useGetBreakpoints('md')
-
+  const [page, setPage] = React.useState(1);
+  const onNextPage = () => {
+    setPage(page+1)
+  }
+  const onPrevPage = () => {
+    setPage(page-1)
+  }
   const slides = content.map((p, i) => <SwiperSlide key={i}><img
     style={{
       position: "relative",
@@ -38,6 +44,9 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
     >
 
       <Swiper
+      onSlideNextTransitionEnd={onNextPage}
+      onSlidePrevTransitionEnd={onPrevPage}
+
         onSwiper={(swiper) => setFirstSwiper(swiper)}
         modules={[Controller]}
         navigation={true}
@@ -50,7 +59,7 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
         {slides}
 
       </Swiper>
-      <PostHeader />
+      <PostHeader total={content.length} page={page} />
       <div style={{ height: '100%' }}>
       </div>
       <PostFooter

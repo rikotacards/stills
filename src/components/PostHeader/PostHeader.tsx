@@ -3,7 +3,11 @@ import { Avatar, Box, Chip, IconButton, Typography } from '@mui/material';
 import React from 'react';
 import './PostHeader.scss'
 import image from '../../assets/1.jpg'
-export const PostHeader: React.FC = () => {
+interface PostHeaderProps {
+  page?: number;
+  total?: number;
+}
+export const PostHeader: React.FC<PostHeaderProps> = ({page, total}) => {
   return (
     <Box className='post-header' position='relative' pl={1} display={'flex'} flexDirection={'row'} width={'100%'} alignItems={'center'} >
       <Box display={'flex'} flexDirection={'row'} alignItems='center'>
@@ -16,7 +20,7 @@ export const PostHeader: React.FC = () => {
         <IconButton>
         <MoreHoriz />
         </IconButton>
-        <Chip className='parts-progress' size='small' label={'1/4'}/>
+        <Chip className='parts-progress' size='small' label={`${page}/${total}`}/>
 
       </Box>
     </Box>

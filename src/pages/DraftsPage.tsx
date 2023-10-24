@@ -10,17 +10,19 @@ interface DraftsPageProps {
 }
 export const DraftsPage: React.FC<DraftsPageProps> = ({nav}) => {
   const [posts, setDrafts]=React.useState([] as PostResponse[])
-  const {setFromDraft} = useAddPostContext();
+  const {setFromDraft, setDraftId} = useAddPostContext();
   React.useEffect(() => {
     getDraftsByUid(sampleUid).then((res) => {
+      console.log('res', res)
       setDrafts(res);
     })
   },[])
   const onClick = (post: PostResponse) => {
     setFromDraft(post.content)
+    setDraftId(post.postId)
     nav && nav(0)
   }
-  const items = posts.map((post) => <div onClick={() => onClick(post)}><img  style={{height:'100%', width: '100%', objectFit: 'cover'}} src={post.content[0].imagePath}  /></div>)
+  const items = posts.map((post) => <div key={post.postId} onClick={() => onClick(post)}><img  style={{height:'100%', width: '100%', objectFit: 'cover'}} src={post.content[0].imagePath}  /></div>)
   if(items.length === 0){
     return (
       <div style={{flexDirection: 'column', height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
