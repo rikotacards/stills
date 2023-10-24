@@ -9,6 +9,7 @@ import { useDrawerContext } from '../providers/DrawerProvider';
 import { deleteDraftByDraftId, saveDraft } from '../firebase/posts';
 import { useAddPostContext } from '../providers/AddPostProvider';
 import { sampleUid } from '../configs/sampleData';
+import { NewPostContent } from '../components/NewPostContent/NewPostContent';
 
 
 export const CreatePage: React.FC = () => {
@@ -34,48 +35,14 @@ export const CreatePage: React.FC = () => {
   }
 
   const nav = useNavigate();
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-  const tabPanels = [<NewPost />, <DraftsPage />]
+ 
 
   return (
     <div className='create-page'>
-      <AppBar sx={{position: 'relative', }}>
-        <Toolbar sx={{ width: '100%', textAlign: 'center' }}>
-          <div style={{ position: 'absolute' }} >
+      <div className='body'>
 
-          <IconButton  onClick={close}>
-            <CloseIcon />
-          </IconButton>
-          </div>
-          <div style={{justifyContent: 'center',  display: 'flex', flex: 1 }}>
-
-            <Typography>Create</Typography>
-          </div>
-        </Toolbar>
-
-      </AppBar>
-
-      <Tabs onChange={handleChange} variant='fullWidth' value={value} sx={{ width: '100%' }}>
-        <Tab sx={{ textTransform: 'capitalize' }} label='New post' />
-        <Tab sx={{ textTransform: 'capitalize' }} label='drafts' />
-      </Tabs>
-      {tabPanels[value]}
-      <Dialog open={isOpen} onClose={openModal}>
-        <Card  >
-          <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
-
-            <Typography sx={{ mb: 1 }}>
-              If you go back now, this post will be discarded.
-            </Typography>
-            <Button color='error' sx={{ mb: 1 }} variant='outlined' fullWidth onClick={onDiscard}>Discard</Button>
-            <Button onClick={() => saveDraft({uid: sampleUid, posts})} sx={{ mb: 1 }} variant='contained' fullWidth>Save Draft</Button>
-            <Button onClick={onBack} variant='contained' fullWidth>Cancel</Button>
-
-          </CardContent>
-        </Card>
-      </Dialog>
+      <NewPostContent/>
+      </div>
     </div>
   )
 }

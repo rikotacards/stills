@@ -3,6 +3,7 @@ import { CustomToolbar } from '../CustomToolbar/CustomToolbar';
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { Box, Tab, Tabs } from '@mui/material';
 import { ReactionRow } from '../ReactionRow/ReactionRow';
+import { useGetBreakpoints } from '../../utils/useGetBreakpoint';
 
 const reactions = [{
   value: 'one',
@@ -44,11 +45,12 @@ export const AllReactions: React.FC = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  const isLessThanMd = useGetBreakpoints();
 
   const tabLabels = reactions.map((reaction) => <Tab label={reaction.emoji} />)
   return (
     <div style={{userSelect: 'none'}}>
-      <CustomToolbar onClose={onClose} title='All Reactions' />
+      <CustomToolbar isModal={!isLessThanMd} onClose={onClose} title='All Reactions' />
       <Tabs variant="scrollable"
         scrollButtons="auto"
 

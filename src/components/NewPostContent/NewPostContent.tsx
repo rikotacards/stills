@@ -10,9 +10,11 @@ import { deleteDraftByDraftId, saveDraft } from '../../firebase/posts';
 import { useAddPostContext } from '../../providers/AddPostProvider';
 import { sampleUid } from '../../configs/sampleData';
 import { DraftsPage } from '../../pages/DraftsPage';
+import { useGetBreakpoints } from '../../utils/useGetBreakpoint';
 
 export const NewPostContent: React.FC = () => {
   const { onClose } = useDrawerContext();
+  const isLessThanMd = useGetBreakpoints();
   const [isOpen, setOpen] = React.useState(false);
   const openModal = () => {
     setOpen(true)
@@ -42,7 +44,7 @@ export const NewPostContent: React.FC = () => {
   }
   const pages = [<NewPost goto={nav} onNext={onNext}/>, <PreviewPage onBack={onPrev}/>, <DraftsPage nav={nav}/>]
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow:'scroll' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh'}}>
         <Toolbar sx={{textAlign: 'center'}}>
       <div style={{display: 'flex', flex: '1', }}>{page > 0 && <IconButton onClick={() => nav(0)}><ArrowBackIosNewIcon/></IconButton>}</div>
       <div style={{display: 'flex', flex: '1', justifyContent: 'center'}}>
@@ -56,7 +58,8 @@ export const NewPostContent: React.FC = () => {
 
         </div>
       </Toolbar>
-      <div style={{height: '100%', overflow: 'auto' }}>
+      <div style={{overflowY:'scroll'}}>
+
         {pages[page]}
       </div>
       <Toolbar/>
