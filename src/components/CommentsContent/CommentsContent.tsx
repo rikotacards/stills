@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { CustomToolbar } from '../CustomToolbar/CustomToolbar';
-import { Avatar, Input, Toolbar } from '@mui/material';
+import { Avatar, Input } from '@mui/material';
 import { Comments } from '../Comments/Comments';
 interface CommentsContentProps {
   postId: string;
@@ -13,7 +13,7 @@ export const CommentsContent: React.FC<CommentsContentProps> = ({
   const {onClose} = useDrawerContext();
   return (
     <div>
-      <CustomToolbar title='Comments' isModal={isModal} onClose={onClose} />
+      <CustomToolbar isModal={isModal} title='Comments' isModal={isModal} onClose={onClose} />
       <div style={{padding: 8}}>
       <Comments/>
       </div>

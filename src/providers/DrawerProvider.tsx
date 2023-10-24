@@ -80,7 +80,8 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
 
       {children}
 
-      <Drawer PaperProps={{square:false, elevation: 0, style: { backgroundColor: "transparent", borderTopLeftRadius:20, borderTopRightRadius: 20 } }}
+      <Drawer 
+      PaperProps={{square:false, elevation: 0, style: { backgroundColor: "transparent", borderTopLeftRadius:20, borderTopRightRadius: 20 } }}
         sx={{ overflow: 'hidden', borderRadius: 9, height: '50%' }} anchor={"bottom"} open={open} onClose={onClose}>
         <Paper sx={{ backdropFilter: 'blur(20px)', overflow: "hidden" }} elevation={3}>
           {Render && <Render postId={postId} isModal={enablePopup} />}

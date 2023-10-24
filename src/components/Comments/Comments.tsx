@@ -11,7 +11,7 @@ const commentsData = [
   }
 ]
 export const Comments: React.FC = () => {
-  const renderedComments = commentsData.map((a) =><Comment />)
+  const renderedComments = commentsData.map((a, i) =><Comment key={i} />)
   return (
     <>
     {renderedComments}

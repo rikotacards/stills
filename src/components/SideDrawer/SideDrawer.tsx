@@ -1,14 +1,9 @@
-import { Drawer, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material'
+import { Drawer, Toolbar } from '@mui/material'
 import React from 'react'
-import { menu } from '../../configs/menu';
-import { useNavigate } from 'react-router-dom';
+import { MenuItems } from '../../configs/menu';
 export const drawerWidth = 240;
 export const SideDrawer: React.FC = () => {
-  const nav = useNavigate();
-  const onClick = (to:string) => {
-    nav(to)
-  }
-  const items = menu.map((i) => <ListItem key={i.name}><ListItemButton onClick={() => onClick(i.path)}><ListItemIcon>{i.icon}</ListItemIcon><ListItemText sx={{textTransform: 'capitalize'}} primary={i.name}/></ListItemButton></ListItem>)
+ 
   return (
     <Drawer
         variant="permanent"
@@ -20,7 +15,7 @@ export const SideDrawer: React.FC = () => {
         }}
       >
         <Toolbar/>
-        {items}
+        <MenuItems/>
       </Drawer>
   )
 }
