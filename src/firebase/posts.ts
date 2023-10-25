@@ -147,8 +147,7 @@ export const getPostsByUid = async (uid: string) => {
   const res = [] as PostResponse[];
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
-  console.log( doc.data());
-  res.push(doc.data() as PostResponse)
+  res.push({...doc.data(), postTime: doc.data().postTime.toDate()} as PostResponse)
 });
 return res
 }
