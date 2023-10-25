@@ -58,7 +58,7 @@ export const NewPostContent: React.FC = () => {
 
         </div>
       </Toolbar>
-      <div style={{overflowY:'scroll'}}>
+      <div style={{overflowY:'scroll', padding: 8}}>
 
         {pages[page]}
       </div>

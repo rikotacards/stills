@@ -47,7 +47,7 @@ export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
       </AppBar>
       <Toolbar />
 
-      {posts.length ? <Post content={posts} postId={''}/> : <Typography>Nothing to preview</Typography>}
+      {posts.length ? <Post postTime={new Date()} content={posts} postId={''}/> : <Typography>Nothing to preview</Typography>}
 
     </div>
   )
