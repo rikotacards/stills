@@ -39,8 +39,8 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
     >
 
       <Swiper
-        onActiveIndexChange={(swiper) => setPage(swiper.activeIndex)}
-        onSwiper={(swiper) => setFirstSwiper(swiper)}
+        onActiveIndexChange={(swiper) => setPage(swiper.activeIndex+1)}
+        onSwiper={(swiper) => {setFirstSwiper(swiper)}}
         modules={[Controller]}
         navigation={true}
         pagination={{clickable: true}}
@@ -53,7 +53,7 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
         {slides}
 
       </Swiper>
-      <PostHeader page={page + 1} total={content.length} />
+      <PostHeader page={page} total={content.length} />
       <div style={{ height: '100%' }}>
       </div>
       <PostFooter

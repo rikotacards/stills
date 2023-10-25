@@ -23,11 +23,7 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
   }, [])
   const onAdd = async({uid, unified}:{uid: string, unified: string}) => {
     try {
-      await addReaction({
-        postId: postId || 'E3UBW1nLq4vQzZRgXMqj',
-        uid,
-        emojiId: unified || 'heart'
-      })
+      
       const newState = structuredClone(displayedReactions)
       if(newState[unified]===undefined){
         newState[unified] = {[uid]:uid}
@@ -42,6 +38,11 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
         newState[unified][uid] = uid
         setDisplayedReactions(newState)
       }
+      await addReaction({
+        postId: postId || 'E3UBW1nLq4vQzZRgXMqj',
+        uid,
+        emojiId: unified || 'heart'
+      })
       
 
     } catch(e){

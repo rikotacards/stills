@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 // Create a theme instance.
-const theme = createTheme({
+export const darkTheme = createTheme({
   typography: {
     fontFamily: [
       '-apple-system',
@@ -16,9 +16,13 @@ const theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
-palette: {
-  
-  mode: 'dark',
-}
+  palette: {
+    mode: 'dark',
+    background: {
+      default: "#000"
+    },
+    text: {
+      // primary: "#fff"
+    }
+  }
 });
-export default theme;

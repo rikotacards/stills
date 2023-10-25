@@ -50,7 +50,12 @@ export const Reactions: React.FC<ReactionsProps> = ({ postId }) => {
           key={i[0]}
           {...handlers}
           className='emoji'
-          sx={{ mr: 1 }}
+          sx={{ 
+            mr: 1, 
+            backdropFilter: 'blur(10px)' ,
+            background:'rgba(0, 0, 0, 0.2)'
+
+          }}
           size="small"
           variant="outlined"
           label={<div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', flexDirection: 'row' }}><div style={{ display: 'flex', alignItems: 'center', marginRight: 4 }}><Emoji size={15} unified={i[0]} /> </div>{i[1]}</div>} />
