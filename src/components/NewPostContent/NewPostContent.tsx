@@ -14,7 +14,7 @@ import { useGetBreakpoints } from '../../utils/useGetBreakpoint';
 
 export const NewPostContent: React.FC = () => {
   const { onClose } = useDrawerContext();
-  const isLessThanMd = useGetBreakpoints();
+  const isLessThanMd = useGetBreakpoints('md');
   const [isOpen, setOpen] = React.useState(false);
   const openModal = () => {
     setOpen(true)
