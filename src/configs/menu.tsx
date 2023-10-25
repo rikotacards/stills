@@ -5,7 +5,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Avatar, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText, styled } from '@mui/material';
 import image from '../assets/1.jpg'
 import { useDrawerContext } from '../providers/DrawerProvider';
-import { CreatePage } from '../pages/CreatePage';
 import { NewPostContent } from '../components/NewPostContent/NewPostContent';
 import React from 'react';
 import { useGetBreakpoints } from '../utils/useGetBreakpoint';
@@ -74,7 +73,7 @@ export const MenuItems: React.FC = () => {
     {
   
       name: 'Profile',
-      path: '/profile',
+      path: '/max',
       icon: <Avatar src={image} sx={{ height: '30px', width: '30px' }} />
   
     }
