@@ -38,14 +38,13 @@ export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
           <div style={{ width: isLessThanMd ? 0 : 240 }}></div>
           <IconButton onClick={back}><ArrowBackIosIcon /></IconButton>
           <Typography color='white'>
-            Back</Typography>
+            </Typography>
           <div style={{ marginLeft: 'auto' }}>
-            <Button onClick={onPost} variant='outlined'><Typography sx={{textTransform: 'capitalize'}}color='white'>Post </Typography></Button>
+            <Button size='small' onClick={onPost} variant='contained'><Typography sx={{textTransform: 'capitalize'}}color='white'>Post </Typography></Button>
           </div>
         </Toolbar>
-
       </AppBar>
-      <Toolbar />
+      <Toolbar/>
 
       {posts.length ? <Post postTime={new Date()} content={posts} postId={''}/> : <Typography>Nothing to preview</Typography>}
 
