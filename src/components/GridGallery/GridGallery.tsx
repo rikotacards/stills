@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import { PostResponse } from '../../firebase/posts';
 import { ImageWithLoading } from '../ImageWithLoading/ImageWithLoading';
-
+import './Gallery.scss'
 interface GridGalleryProps {
   posts: PostResponse[];
 }
@@ -12,8 +12,8 @@ export const GridGallery: React.FC<GridGalleryProps> = ({posts}) => {
   
 <ImageWithLoading postId={post.postId} imagePath={post.content[0].imagePath}/>  </Grid>)
   return (
-    <Grid container spacing={1}>
+    <div className='post-list' spacing={1}>
       {gridItems}
-    </Grid>
+    </div>
   )
 }

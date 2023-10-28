@@ -1,6 +1,6 @@
 // everything to do with posts
 
-import { FieldValue, collection, deleteDoc, doc, getDocs, query, serverTimestamp, setDoc, where, getDoc } from "firebase/firestore"
+import { FieldValue, collection, deleteDoc, doc,orderBy, getDocs, query, serverTimestamp, setDoc, where, getDoc } from "firebase/firestore"
 import { db, storage } from "./firebase"
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
@@ -142,7 +142,7 @@ export interface PostResponse {
 
 export const getPostsByUid = async (uid: string) => {
   const contentRef = collection(db, 'content')
-  const q = query(contentRef, where("author", "==", uid))
+  const q = query(contentRef, where("author", "==", uid), orderBy('postTime', "desc"))
   const querySnapshot = await getDocs(q);
   const res = [] as PostResponse[];
 querySnapshot.forEach((doc) => {
@@ -177,3 +177,4 @@ return res
 export const  deleteDraftByDraftId = async (draftId: string) => {
   await deleteDoc(doc(collection(db, 'drafts'), draftId))
 }
+

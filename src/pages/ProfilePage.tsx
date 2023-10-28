@@ -54,7 +54,7 @@ export const ProfilePage: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignSelf: 'flex-start', height: '100%' }}>
       <ProfileHeader followersCount={followersCount || 0} userId={userId || ''} image={image} followingCount={followingCount || 0} username={username || ''}/>
-      <LineChart/>
+      {/* <LineChart/> */}
       <GridGallery posts={posts} />
     </div>
   )

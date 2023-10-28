@@ -73,7 +73,6 @@ export const PostFooter: React.FC<PostFooterProps> = ({postTime, content, captio
         <Box ml="auto" display='flex'  alignItems={'center'}>
           <IconButton onClick={onOpenReactionsDrawer} sx={{ color: 'white', mr: 1 }} size="small">
           <EmojiEmotionsIcon sx={{color: 'white'}} fontSize="small" />
-
           </IconButton>
           <IconButton onClick={onCommentClick} sx={{ color: 'white', mr: 1 }} size="small">
             <ChatBubbleOutlineIcon fontSize="small" />
