@@ -4,7 +4,6 @@ import './HomePage.scss'
 import { PostResponse, getPostsByUid } from '../firebase/posts';
 import { sampleUid } from '../configs/sampleData';
 import { Post } from '../components/Post/Post';
-import { useGetBreakpoints } from '../utils/useGetBreakpoint';
 export const HomePage: React.FC = () => {
   const [posts, setPosts] = React.useState<PostResponse[]>([])
   React.useEffect(() => {

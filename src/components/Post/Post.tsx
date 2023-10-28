@@ -20,7 +20,7 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
   const isLessThanMd = useGetBreakpoints('md')
   const [page, setPage] = React.useState(1);
  const month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(postTime)
- const date = postTime.getDate() 
+ const date = postTime?.getDate() 
  const slides = content.map((p, i) => <SwiperSlide key={i}><img
     style={{
       position: "relative",
@@ -62,7 +62,7 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
         swiper={firstSwiper}
         setSecondSwiper={setSecondSwiper} />
     </div>
-    <div style={{marginBottom: 24, width: '100%', marginLeft: 16, display: 'flex', flexDirection: 'row'}}><Typography variant='caption' sx={{mr:0.5}}>{month }</Typography> <Typography variant='caption'>{date}</Typography></div>
+    <div style={{marginBottom: 24, width: '100%', marginLeft: 16, display: 'flex', flexDirection: 'row'}}><Typography variant='caption' sx={{mr:0.5}}>{month }</Typography><Typography variant='caption'>{date}</Typography></div>
     </DrawerProvider>
     </ReactionsProvider>
 

@@ -36,7 +36,7 @@ function App() {
                 <Route path='/create' element={<CreatePage />} />
                 <Route path='/notifications' element={<NotificationsPage />} />
                 <Route path='/create/preview' element={<PreviewPage />} />
-                <Route path='/post/:postId' element={<PostPage />} />
+                <Route path='/p/:postId' element={<PostPage />} />
                 <Route path='/profile' element={<ProfilePage />} />
                 <Route path='/:username' element={<ProfilePage />} />
               </Routes>
