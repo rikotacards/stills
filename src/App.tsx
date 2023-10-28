@@ -17,14 +17,14 @@ import { PreviewPage } from './pages/PreviewPage';
 import { NotificationsPage } from './pages/NotificationsPage';
 import { PostPage } from './pages/PostPage';
 import { ThemeProvider } from '@emotion/react';
-import theme from './configs/theme';
+import {darkTheme} from './configs/theme';
 import { DrawerProvider } from './providers/DrawerProvider';
 
 
 function App() {
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkTheme}>
 
       <BrowserRouter>
         <AddPostProvider>

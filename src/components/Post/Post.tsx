@@ -9,31 +9,19 @@ import './Post.scss'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { DrawerProvider } from "../../providers/DrawerProvider";
 import { useGetBreakpoints } from "../../utils/useGetBreakpoint";
-import { Content } from "../../firebase/posts";
+import {  PostResponse } from "../../firebase/posts";
 import { ReactionsProvider } from "../../providers/ReactionsProvider";
-interface PostProps {
-  content: Content[]
-  postId: string;
-}
-export const Post: React.FC<PostProps> = ({content,postId}) => {
+import { Typography } from "@mui/material";
+
+export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
   const captions = content.map((p) => p.caption)
   const [firstSwiper, setFirstSwiper] = React.useState(null);
   const [secondSwiper, setSecondSwiper] = React.useState(null);
   const isLessThanMd = useGetBreakpoints('md')
   const [page, setPage] = React.useState(1);
-  const onNextPage = () => {
-    if(page === content.length){
-      return
-    }
-    setPage(page+1)
-  }
-  const onPrevPage = () => {
-    if(page === 1){
-      return;
-    }
-    setPage(page-1)
-  }
-  const slides = content.map((p, i) => <SwiperSlide key={i}><img
+ const month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(postTime)
+ const date = postTime.getDate() 
+ const slides = content.map((p, i) => <SwiperSlide key={i}><img
     style={{
       position: "relative",
       height: "100%",
@@ -51,10 +39,8 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
     >
 
       <Swiper
-      onSlideNextTransitionEnd={onNextPage}
-      onSlidePrevTransitionEnd={onPrevPage}
-
-        onSwiper={(swiper) => setFirstSwiper(swiper)}
+        onActiveIndexChange={(swiper) => setPage(swiper.activeIndex+1)}
+        onSwiper={(swiper) => {setFirstSwiper(swiper)}}
         modules={[Controller]}
         navigation={true}
         pagination={{clickable: true}}
@@ -67,7 +53,7 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
         {slides}
 
       </Swiper>
-      <PostHeader total={content.length} page={page} />
+      <PostHeader page={page} total={content.length} />
       <div style={{ height: '100%' }}>
       </div>
       <PostFooter
@@ -76,7 +62,9 @@ export const Post: React.FC<PostProps> = ({content,postId}) => {
         swiper={firstSwiper}
         setSecondSwiper={setSecondSwiper} />
     </div>
+    <div style={{marginBottom: 24, width: '100%', marginLeft: 16, display: 'flex', flexDirection: 'row'}}><Typography variant='caption' sx={{mr:0.5}}>{month }</Typography> <Typography variant='caption'>{date}</Typography></div>
     </DrawerProvider>
     </ReactionsProvider>
+
   );
 };

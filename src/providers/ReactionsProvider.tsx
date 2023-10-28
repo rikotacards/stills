@@ -23,7 +23,7 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
   }, [])
   const onAdd = async({uid, unified}:{uid: string, unified: string}) => {
     try {
-      await addReaction({
+      addReaction({
         postId: postId || 'E3UBW1nLq4vQzZRgXMqj',
         uid,
         emojiId: unified || 'heart'
@@ -42,6 +42,7 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
         newState[unified][uid] = uid
         setDisplayedReactions(newState)
       }
+      
       
 
     } catch(e){

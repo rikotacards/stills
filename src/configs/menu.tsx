@@ -19,7 +19,7 @@ const CreateButton: React.FC = () => {
   }
   return (
     <IconButton sx={{
-      background: 'rgba(0, 0, 0, 0)', 
+      background: 'rgba(0, 0, 0, 0.4)', 
       backdropFilter: 'blur(50px)',
       border: '1px solid white'
     }} onClick={onClick}><AddIcon /></IconButton>
@@ -29,8 +29,8 @@ const CreateButton: React.FC = () => {
 const CustomIconButton = (Component: React.FC) => {
   return (
     <IconButton sx={{
-      background: 'rgba(0, 0, 0, 0)', 
-      backdropFilter: 'blur(50px)',
+      background: 'rgba(0, 0, 0, 0.4)', 
+      backdropFilter: 'blur(2px)',
       border: '1px solid white'
     }}>
       {<Component />}

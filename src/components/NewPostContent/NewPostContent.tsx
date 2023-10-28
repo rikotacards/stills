@@ -19,21 +19,21 @@ export const NewPostContent: React.FC = () => {
   const openModal = () => {
     setOpen(true)
   }
-  
+
   const closeModal = () => {
     setOpen(false)
   }
-  const {posts, draftId,clearPost} = useAddPostContext();
+  const { posts, draftId, clearPost } = useAddPostContext();
   const [page, setPage] = React.useState(0);
   const nav = (page: number) => {
     console.log('setting', page)
     setPage(page)
   }
   const onNext = () => {
-    setPage(page+1)
+    setPage(page + 1)
   }
   const onPrev = () => {
-    setPage(page-1);
+    setPage(page - 1);
   }
   const onDiscard = () => {
     setOpen(false);
@@ -42,27 +42,27 @@ export const NewPostContent: React.FC = () => {
 
     onClose();
   }
-  const pages = [<NewPost goto={nav} onNext={onNext}/>, <PreviewPage onBack={onPrev}/>, <DraftsPage nav={nav}/>]
+  const pages = [<NewPost goto={nav} onNext={onNext} />, <PreviewPage onBack={onPrev} />, <DraftsPage nav={nav} />]
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh'}}>
-        <Toolbar sx={{textAlign: 'center'}}>
-      <div style={{display: 'flex', flex: '1', }}>{page > 0 && <IconButton onClick={() => nav(0)}><ArrowBackIosNewIcon/></IconButton>}</div>
-      <div style={{display: 'flex', flex: '1', justifyContent: 'center'}}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+     {page === 0 &&  <Toolbar sx={{ textAlign: 'center' }}>
+        <div style={{ display: 'flex', flex: '1', }}>{page > 0 && <IconButton onClick={() => nav(0)}><ArrowBackIosNewIcon /></IconButton>}</div>
+        <div style={{ display: 'flex', flex: '1', justifyContent: 'center' }}>
 
-        <Typography textTransform={'capitalize'}>Create</Typography>
-      </div>
-        <div style={{display: 'flex', flex: '1', }}>
-        <IconButton sx={{ml: 'auto'}} onClick={openModal}>
-              {<KeyboardArrowDownIcon/>}
-            </IconButton>
+          <Typography textTransform={'capitalize'}>Create</Typography>
+        </div>
+        <div style={{ display: 'flex', flex: '1', }}>
+          <IconButton sx={{ ml: 'auto' }} onClick={openModal}>
+            {<KeyboardArrowDownIcon />}
+          </IconButton>
 
         </div>
-      </Toolbar>
-      <div style={{overflowY:'scroll'}}>
+      </Toolbar>}
+      <div style={{ overflowY: 'scroll', padding: 8 }}>
 
         {pages[page]}
       </div>
-      <Toolbar/>
+      <Toolbar />
       <Dialog open={isOpen} onClose={closeModal}>
         <Card  >
           <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -71,7 +71,7 @@ export const NewPostContent: React.FC = () => {
               If you go back now, this post will be discarded
             </Typography>
             <Button color='error' sx={{ mb: 1 }} variant='outlined' fullWidth onClick={onDiscard}>Discard</Button>
-            <Button onClick={() => saveDraft({uid: sampleUid, posts, draftId})} sx={{ mb: 2 }} variant='contained' fullWidth>Save Draft</Button>
+            <Button onClick={() => saveDraft({ uid: sampleUid, posts, draftId })} sx={{ mb: 2 }} variant='contained' fullWidth>Save Draft</Button>
             <Button onClick={onClose} variant='contained' fullWidth>Cancel</Button>
 
           </CardContent>
