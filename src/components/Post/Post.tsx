@@ -30,6 +30,7 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
       height: isLoading ? 0 : "100%",
       width: "100%",
       objectFit: "cover",
+      display: isLoading? 'none': 'block'
     }}
     src={p.imagePath}
   /> 

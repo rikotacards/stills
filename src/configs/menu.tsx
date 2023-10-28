@@ -50,7 +50,7 @@ export const MenuItems: React.FC = () => {
   const menu = [
     {
       name: 'home',
-      path: '/home',
+      path: '/',
       icon: isLessThanMd ? CustomIconButton(HomeIcon) : <HomeIcon/>,
     },
     {

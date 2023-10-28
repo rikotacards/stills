@@ -31,7 +31,7 @@ function App() {
           <DrawerProvider>
             <Layout>
               <Routes>
-                <Route path='/home' element={<HomePage />} />
+                <Route path='/' element={<HomePage />} />
                 <Route path='/explore' element={<ExplorePage />} />
                 <Route path='/create' element={<CreatePage />} />
                 <Route path='/notifications' element={<NotificationsPage />} />

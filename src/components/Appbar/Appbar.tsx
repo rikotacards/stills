@@ -12,7 +12,7 @@ export const Appbar: React.FC = () => {
   }
   return (
     <>
-    <AppBar position="fixed" color="primary" sx={{background:'transparent', top: 'auto', bottom: 0 }}>
+    <AppBar elevation={0} position="fixed" color="primary" sx={{background:'transparent', top: 'auto', bottom: 0 }}>
       {/* <Divider/> */}
       <Toolbar className='toolbar'>
            <MenuItems/>
