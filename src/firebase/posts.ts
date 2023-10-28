@@ -1,6 +1,6 @@
 // everything to do with posts
 
-import { FieldValue, collection, deleteDoc, doc, getDocs, query, serverTimestamp, setDoc, where } from "firebase/firestore"
+import { FieldValue, collection, deleteDoc, doc, getDocs, query, serverTimestamp, setDoc, where, getDoc } from "firebase/firestore"
 import { db, storage } from "./firebase"
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
@@ -151,6 +151,15 @@ querySnapshot.forEach((doc) => {
 });
 return res
 }
+export const getPostByPostId = async (postId: string) => {
+  console.log("getting")
+  const snapshot = await getDoc(doc(db, 'content', postId))
+  if(snapshot.exists()){
+    console.log('data', snapshot.data)
+    return {...snapshot.data(), postTime: snapshot.data().postTime.toDate()} as PostResponse;
+  }
+}
+
 
 export const getDraftsByUid = async (uid: string) => {
   const contentRef = collection(db, 'drafts')
