@@ -2,6 +2,7 @@ import { Box, IconButton } from "@mui/material";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import React from "react";
 import './PostFooter.scss';
+import SendIcon from '@mui/icons-material/Send';
 import { Caption } from "../Caption/Caption";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
@@ -11,23 +12,30 @@ import { ReactionsDrawerContent } from "../ReactionsDrawerContent/ReactionsDrawe
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { CommentsContent } from "../CommentsContent/CommentsContent";
 import { Reactions } from "../Reactions/Reactions";
+import { ShareToInstagram } from "../ShareToInstagram/ShareToInstagram";
+import { Content } from "../../firebase/posts";
 interface PostFooterProps {
   swiper: any;
   setSecondSwiper: any;
   captions: string[];
   postId: string;
+  content: Content[];
+  postTime: any;
 }
-export const PostFooter: React.FC<PostFooterProps> = ({captions, swiper, setSecondSwiper, postId }) => {
+export const PostFooter: React.FC<PostFooterProps> = ({postTime, content, captions, swiper, setSecondSwiper, postId }) => {
   const drawerContext = useDrawerContext();
   const onOpenReactionsDrawer = () => {
-    drawerContext.setRenderComponent(ReactionsDrawerContent)
+    drawerContext.setRenderComponent(<ReactionsDrawerContent postId={postId}/>)
     drawerContext.onOpen()
   }
   
-  
+  const onShareClick = () => {
+    drawerContext.setRenderComponent(<ShareToInstagram postTime={postTime} content={content} postId={postId}  />)
+    drawerContext.onOpen()
+  }
 
   const onCommentClick = () => {
-    drawerContext.setRenderComponent(CommentsContent)
+    drawerContext.setRenderComponent(<CommentsContent postId={postId}/>)
     drawerContext.onOpen()
   }
   
@@ -63,25 +71,15 @@ export const PostFooter: React.FC<PostFooterProps> = ({captions, swiper, setSeco
         </div>
 
         <Box ml="auto" display='flex'  alignItems={'center'}>
-          {/* <Chip
-          clickable
-          size='small'
-          variant='outlined'
-          onClick={onOpenReactionsDrawer} 
-          label={
-            <div style={{display: 'flex'}}>
-
-              <EmojiEmotionsIcon sx={{color: 'white'}} fontSize="small" />
-            </div>
-          }
-
-          /> */}
           <IconButton onClick={onOpenReactionsDrawer} sx={{ color: 'white', mr: 1 }} size="small">
           <EmojiEmotionsIcon sx={{color: 'white'}} fontSize="small" />
 
           </IconButton>
           <IconButton onClick={onCommentClick} sx={{ color: 'white', mr: 1 }} size="small">
-            <ChatBubbleOutlineIcon />
+            <ChatBubbleOutlineIcon fontSize="small" />
+          </IconButton>
+          <IconButton onClick={onShareClick} sx={{ color: 'white', mr: 1 }} size="small">
+            <SendIcon fontSize="small" />
           </IconButton>
           
         </Box>

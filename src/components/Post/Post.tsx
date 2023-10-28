@@ -57,12 +57,15 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
       <div style={{ height: '100%' }}>
       </div>
       <PostFooter
+      content={content}
       postId={postId}
+      postTime={postTime}
         captions={captions}
         swiper={firstSwiper}
         setSecondSwiper={setSecondSwiper} />
     </div>
-    <div style={{marginBottom: 24, width: '100%', marginLeft: 16, display: 'flex', flexDirection: 'row'}}><Typography variant='caption' sx={{mr:0.5}}>{month }</Typography><Typography variant='caption'>{date}</Typography></div>
+    <div style={{marginBottom: 0,zIndex:1, width: '100%', marginLeft: 16, display: 'flex', flexDirection: 'row'}}>
+      <Typography variant='caption' sx={{mr:0.5}}>{month }</Typography><Typography variant='caption'>{date}</Typography></div>
     </DrawerProvider>
     </ReactionsProvider>
 
