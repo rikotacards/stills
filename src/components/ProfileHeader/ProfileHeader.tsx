@@ -6,22 +6,23 @@ import { onFollow } from '../../firebase/users';
 import { Followers } from '../Followers/Followers';
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { Following } from '../Following/Following';
+import { LineChart } from '@mui/x-charts/LineChart';
 interface ProfileHeaderProps {
   username: string;
   userId: string;
   followersCount: number;
   followingCount: number;
-  image:string;
+  image: string;
 }
-export const ProfileHeader: React.FC<ProfileHeaderProps> = ({username,image, followersCount, followingCount, userId}) => {
-  const {onOpen, setRenderComponent} = useDrawerContext();
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ username, image, followersCount, followingCount, userId }) => {
+  const { onOpen, setRenderComponent } = useDrawerContext();
   const onFollowingClick = () => {
-    setRenderComponent(Following)
+    setRenderComponent(<Following />)
     onOpen();
   }
   return (
     <>
-    <Box justifyContent={'center'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 1 }}>
+      <Box justifyContent={'flex-start'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: 1 }}>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
 
           <Avatar src={image} sx={{ height: 100, width: 100 }} />
@@ -34,25 +35,27 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({username,image, fol
             <Button sx={{ m: 1, borderRadius: 20, textTransform: 'capitalize' }} onClick={userId ? () => onFollow({ targetUid: userId, myUid: sampleUid }) : undefined} size='small' variant='contained'>Follow</Button>
           </div>
           <div>
-            <Button 
-            onClick={() => {setRenderComponent(Followers); onOpen()}}
-            sx={{ m: 1, 
-            borderRadius: 20, 
-            textTransform: 'capitalize' }} 
-            size='small' 
-            variant='contained'>{followersCount} followers
+            <Button
+              onClick={() => { setRenderComponent(<Followers />); onOpen() }}
+              sx={{
+                m: 1,
+                borderRadius: 20,
+                textTransform: 'capitalize'
+              }}
+              size='small'
+              variant='contained'>{followersCount} followers
             </Button>
           </div>
           <div>
-            <Button 
-            onClick={onFollowingClick}
-            sx={{ m: 1, borderRadius: 20, textTransform: 'capitalize' }} size='small' variant='contained'>{followingCount} Following</Button>
+            <Button
+              onClick={onFollowingClick}
+              sx={{ m: 1, borderRadius: 20, textTransform: 'capitalize' }} size='small' variant='contained'>{followingCount} Following</Button>
           </div>
 
         </Box>
 
       </Box>
       <Divider sx={{ width: '100%' }} />
-      </>
+    </>
   )
 }

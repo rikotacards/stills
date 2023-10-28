@@ -11,7 +11,7 @@ import { DrawerProvider } from "../../providers/DrawerProvider";
 import { useGetBreakpoints } from "../../utils/useGetBreakpoint";
 import {  PostResponse } from "../../firebase/posts";
 import { ReactionsProvider } from "../../providers/ReactionsProvider";
-import { Typography } from "@mui/material";
+import { Skeleton, Typography } from "@mui/material";
 
 export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
   const captions = content.map((p) => p.caption)
@@ -20,16 +20,21 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
   const isLessThanMd = useGetBreakpoints('md')
   const [page, setPage] = React.useState(1);
  const month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(postTime)
+ const [isLoading, setLoading] = React.useState(true);
  const date = postTime?.getDate() 
- const slides = content.map((p, i) => <SwiperSlide key={i}><img
+ const slides = content.map((p, i) => <SwiperSlide key={i}>
+  { <img
+    onLoad={() => {setLoading(false)}}
     style={{
       position: "relative",
-      height: "100%",
+      height: isLoading ? 0 : "100%",
       width: "100%",
       objectFit: "cover",
     }}
     src={p.imagePath}
-  /></SwiperSlide>)
+  /> 
+}
+  </SwiperSlide>)
   return (
     <ReactionsProvider postId={postId}>
     <DrawerProvider enablePopup={!isLessThanMd} postId={postId}>
@@ -51,7 +56,6 @@ export const Post: React.FC<PostResponse> = ({content,postId, postTime}) => {
       >
 
         {slides}
-
       </Swiper>
       <PostHeader page={page} total={content.length} />
       <div style={{ height: '100%' }}>
