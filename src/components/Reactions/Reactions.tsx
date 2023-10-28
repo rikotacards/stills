@@ -13,7 +13,7 @@ export const Reactions: React.FC<ReactionsProps> = ({ postId }) => {
   const drawerContext = useDrawerContext();
   const {displayedReactions} = useReactionsContext();
   const onAllReactions = () => {
-    drawerContext.setRenderComponent(AllReactions)
+    drawerContext.setRenderComponent(<AllReactions/>)
     drawerContext.onOpen()
   }
   console.log('displayed', displayedReactions)

@@ -1,8 +1,10 @@
 // Import the functions you need from the SDKs you need
+import firebase from "firebase/app" 
+
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { Timestamp, collection, doc, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
+import { collection, doc, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
+import {  getStorage, ref, uploadString } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
