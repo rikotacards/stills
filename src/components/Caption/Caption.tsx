@@ -30,9 +30,14 @@ export const Caption: React.FC<CaptionProps> = ({ text }) => {
       }}>
 
 
-        <div>
-          <div style={{ marginLeft: 8, display: 'flex', flexDirection: 'row' }}>
-            <Typography variant='caption' fontWeight={'bold'}>Maxwelldhsu</Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0px' }}>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom:4 }}>
+          <Avatar src={image} sx={{marginLeft:1, height: 25, width: 25 }} />
+
+            <div style={{ marginLeft: 8, display: 'flex', flexDirection: 'row' }}>
+              <Typography variant='caption' fontWeight={'bold'}>Maxwelldhsu</Typography>
+            </div>
+
           </div>
           <Typography sx={{ textShadow: 'grey 0px 0px 3px' }} variant='body2' className={classNames(expanded ? 'expanded' : 'closed', 'caption')}>
             {text}
