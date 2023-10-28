@@ -1,14 +1,11 @@
-import { Avatar, Box, Button, Divider, Typography } from '@mui/material';
 import React from 'react';
 import image from '../assets/1.jpg'
 import { GridGallery } from '../components/GridGallery/GridGallery';
 import { PostResponse, getPostsByUid } from '../firebase/posts';
-import { sampleUid } from '../configs/sampleData';
 import { getFollowerCount, getFollowingCount, getUidFromUsername, onFollow } from '../firebase/users';
 import { useParams } from 'react-router-dom';
-import { useDrawerContext } from '../providers/DrawerProvider';
-import { Followers } from '../components/Followers/Followers';
 import { ProfileHeader } from '../components/ProfileHeader/ProfileHeader';
+import { LineChart } from '../components/LineChart/LineChart';
 export const ProfilePage: React.FC = () => {
   const { username } = useParams();
   const [isLoading, setLoading] = React.useState(true);
@@ -57,6 +54,7 @@ export const ProfilePage: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignSelf: 'flex-start', height: '100%' }}>
       <ProfileHeader followersCount={followersCount || 0} userId={userId || ''} image={image} followingCount={followingCount || 0} username={username || ''}/>
+      <LineChart/>
       <GridGallery posts={posts} />
     </div>
   )
