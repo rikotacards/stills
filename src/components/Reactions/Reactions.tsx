@@ -5,18 +5,18 @@ import { LongPressEventType, useLongPress } from 'use-long-press';
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { AllReactions } from '../AllReactions/AllReactions';
 import { useReactionsContext } from '../../providers/ReactionsProvider';
+import { sampleUid } from '../../configs/sampleData';
 
 interface ReactionsProps {
   postId: string;
 }
 export const Reactions: React.FC<ReactionsProps> = ({ postId }) => {
   const drawerContext = useDrawerContext();
-  const {displayedReactions} = useReactionsContext();
+  const {displayedReactions, onAdd} = useReactionsContext();
   const onAllReactions = () => {
     drawerContext.setRenderComponent(<AllReactions/>)
     drawerContext.onOpen()
   }
-  console.log('displayed', displayedReactions)
 
   const callback = React.useCallback(() => {
     onAllReactions();
@@ -32,13 +32,12 @@ export const Reactions: React.FC<ReactionsProps> = ({ postId }) => {
   const handlers = bind('test')
 
   
-    const rendered = [];
+    const rendered:[string, number][] = [];
     let res = displayedReactions
       for (const key in res) {
         const count = Object.values(res[key]).length;
         rendered.push([key, count])
       }
-      console.log('rendr', rendered)
 
   
   const reactions = rendered?.map((i) => {
@@ -49,6 +48,7 @@ export const Reactions: React.FC<ReactionsProps> = ({ postId }) => {
         <Chip
           key={i[0]}
           {...handlers}
+          onClick={() => onAdd({ uid: sampleUid, unified:i[0]})}
           className='emoji'
           sx={{ 
             mr: 1, 

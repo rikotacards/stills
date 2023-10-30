@@ -39,13 +39,13 @@ export const PostFooter: React.FC<PostFooterProps> = ({postTime, content, captio
     drawerContext.onOpen()
   }
   
-  const captionSlides = captions.map((c, i) => <SwiperSlide key={c + i} style={{
+  const captionSlides = content.map((c, i) => <SwiperSlide key={c + i} style={{
     flexDirection: 'column',
     display: 'flex',
     justifyContent: 'flex-end'
   }} >
 
-    <Caption text={c} />
+    <Caption text={c.caption} />
   </SwiperSlide>)
  
   return (

@@ -77,7 +77,7 @@ export const data = {
   datasets: [
     {
       label: 'Mood',
-      data: [0,-1, -2, -3, -8, 5, -10],
+      data: [10,-1, -2, -3, -8, 5, -10],
       tension: 0.3,
       fill: (context) => {
         const chart = context.chart;

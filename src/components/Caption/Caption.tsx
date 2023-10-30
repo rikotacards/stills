@@ -3,7 +3,6 @@ import './Caption.scss';
 import image from '../../assets/1.jpg'
 import { Avatar, Chip, Typography } from '@mui/material';
 import classNames from 'classnames';
-import { PostHeader } from '../PostHeader/PostHeader';
 interface CaptionProps {
   text?: string;
 }
@@ -14,9 +13,7 @@ export const Caption: React.FC<CaptionProps> = ({ text }) => {
   const onClick = () => {
     setOn(!expanded);
   }
-  if (text?.length === 0) {
-    return null
-  }
+ 
   return (
     <div>
 

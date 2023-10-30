@@ -3,6 +3,7 @@
 import { FieldValue, collection, deleteDoc, doc,orderBy, getDocs, query, serverTimestamp, setDoc, where, getDoc } from "firebase/firestore"
 import { db, storage } from "./firebase"
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import { addReaction } from "./reactions";
 
 
 interface AddPostsProps {
@@ -69,8 +70,9 @@ export const addPost = async(args:AddPostsProps) => {
             postId:  docRef.id,
           });
         });
-    });
 
+    });
+    await addReaction({postId: docRef.id, emojiId: '', uid:''})
   } catch (e) {
     return e;
   }

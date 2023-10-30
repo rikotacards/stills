@@ -1,7 +1,15 @@
 import React from 'react';
 import { addReaction, getReactionsByPostId } from '../firebase/reactions';
 
-const ReactionsContext = React.createContext({})
+interface IReactionsContext {
+  onAdd: ({ uid, unified }: {
+    uid: string;
+    unified: string;
+}) => Promise<void>,
+displayedReactions: Reactions
+}
+
+const ReactionsContext = React.createContext({} as IReactionsContext)
 
 export const useReactionsContext = () => React.useContext(ReactionsContext)
 interface ReactionsProviderProps {
@@ -17,6 +25,11 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
   const [displayedReactions, setDisplayedReactions] = React.useState<Reactions>({})
   React.useEffect(() => {
     getReactionsByPostId({postId}).then((res) => {
+      if(res['2764-fe0f']){
+
+      } else {
+        res['2764-fe0f'] = {}
+      }
       setDisplayedReactions(res)
     })
 
@@ -26,7 +39,7 @@ export const ReactionsProvider: React.FC<ReactionsProviderProps> = ({postId, chi
       addReaction({
         postId: postId || 'E3UBW1nLq4vQzZRgXMqj',
         uid,
-        emojiId: unified || 'heart'
+        emojiId: unified 
       })
       const newState = structuredClone(displayedReactions)
       if(newState[unified]===undefined){
