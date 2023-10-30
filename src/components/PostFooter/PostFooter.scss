@@ -19,7 +19,7 @@
   flex-direction: column;
   width: 100%;
   position: relative;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 50% , rgba(0, 0, 0, 0.0));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 50% , rgba(0, 0, 0, 0.0));
 
 }
 .swiper-custom {
@@ -29,6 +29,13 @@
   flex-direction: column;
   height: 100%;
   position: relative;
+  .swiper-slide {
+    opacity: 0!important;
+  }
+  
+  .swiper-slide-active {
+    opacity: 1!important;
+  }
 }
 .swiper-custom::-webkit-scrollbar {
   display: none

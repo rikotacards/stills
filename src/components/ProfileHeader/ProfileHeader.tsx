@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProfileHeader.scss';
-import { Box, Avatar, Typography, Button, Divider } from '@mui/material';
+import { Box, Avatar, Typography, Button, Divider, Toolbar } from '@mui/material';
 import { sampleUid } from '../../configs/sampleData';
 import { onFollow } from '../../firebase/users';
 import { Followers } from '../Followers/Followers';
@@ -22,17 +22,19 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ username, image, f
   }
   return (
     <>
+      <Toolbar>
+        <Typography variant='h5' sx={{ fontWeight: 'bold', textTransform: 'capitalize' }}>{'Maxwelldhsu'}</Typography>
+
+      </Toolbar>
       <Box justifyContent={'flex-start'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: 1 }}>
-        <div style={{ display: 'flex', flexDirection: 'row', width:'100%', overflow: 'scroll' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
 
           <Avatar src={image} sx={{ height: 100, width: 100 }} />
-          <div style={{width: '100%'}}>
-            <LineChart/>
-          </div>
-
+          <Box sx={{ ml: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <LineChart/>
+            
+          </Box>
         </div>
-        <Typography sx={{ textTransform: 'capitalize' }}>{username}</Typography>
-        <Typography>Making things on the web</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
           <div>
             <Button sx={{ m: 1, borderRadius: 20, textTransform: 'capitalize' }} onClick={userId ? () => onFollow({ targetUid: userId, myUid: sampleUid }) : undefined} size='small' variant='contained'>Follow</Button>
@@ -58,7 +60,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ username, image, f
         </Box>
 
       </Box>
-      <Divider sx={{ width: '100%' }} />
+      {/* <Divider sx={{ width: '100%', mb:2 }} /> */}
     </>
   )
 }

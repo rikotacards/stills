@@ -1,85 +1,85 @@
-import { Box, Button, Collapse, Fab, IconButton, Slider, Typography } from '@mui/material';
+import {  Button, Collapse, Fab, IconButton, Slider, Typography } from '@mui/material';
 import React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAddPostContext } from '../../providers/AddPostProvider';
 import { useNavigate } from 'react-router-dom';
 import { AddPostWidget } from '../AddPostWidget/AddPostWidget';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 interface NewPostProps {
   onNext?: () => void;
   goto: (page: number) => void;
 }
+const marks = [
+  {
+    value: -10,
+    label: 'Terrible',
+  },
+  {
+    value: -9,
+  },
+  {
+    value: -8,
+  },
+  {
+    value: -7,
+  },
+  {
+    value: -6,
+  },
+  {
+    value: -5,
+  },
+  {
+    value: -4,
+  },
+  {
+    value: -3,
+  },
+  {
+    value: -2,
+  },
+  {
+    value: -1,
+  },
+  {
+    value: 0,
+    label: 'Neutral',
+  },
+  {
+    value: 1,
+  },
+  {
+    value: 2,
+  },
+  {
+    value: 3,
+  },
+  {
+    value: 4,
+  },
+  {
+    value: 5,
+  },
+  {
+    value: 6,
+  },
+  {
+    value: 7,
+  },
+  {
+    value: 8,
+  },
+  {
+    value: 9,
+  },
+  {
+    value: 10,
+    label: 'Great'
+  },
+];
 export const NewPost: React.FC<NewPostProps> = ({ onNext, goto }) => {
   const addPostContext = useAddPostContext();
   const nav = useNavigate()
-  const marks = [
-    {
-      value: -10,
-      label: 'Terrible',
-    },
-    {
-      value: -9,
-    },
-    {
-      value: -8,
-    },
-    {
-      value: -7,
-    },
-    {
-      value: -6,
-    },
-    {
-      value: -5,
-    },
-    {
-      value: -4,
-    },
-    {
-      value: -3,
-    },
-    {
-      value: -2,
-    },
-    {
-      value: -1,
-    },
-    {
-      value: 0,
-      label: 'Neutral',
-    },
-    {
-      value: 1,
-    },
-    {
-      value: 2,
-    },
-    {
-      value: 3,
-    },
-    {
-      value: 4,
-    },
-    {
-      value: 5,
-    },
-    {
-      value: 6,
-    },
-    {
-      value: 7,
-    },
-    {
-      value: 8,
-    },
-    {
-      value: 9,
-    },
-    {
-      value: 10,
-      label: 'Great'
-    },
-  ];
+  const {handleScoreChange} = useAddPostContext();
   const addPostWidgets = addPostContext.posts.map((post, i) => <AddPostWidget key={i} index={i} />)
   const [showMood, setShowMood] = React.useState(false);
   const toggle= () => {
@@ -102,7 +102,7 @@ export const NewPost: React.FC<NewPostProps> = ({ onNext, goto }) => {
                 min={-10}
                 marks={marks}
                 valueLabelDisplay="auto"
-
+              onChange={handleScoreChange}
                 max={10} />
             </div>
 

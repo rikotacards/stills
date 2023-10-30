@@ -6,7 +6,12 @@ import SendIcon from '@mui/icons-material/Send';
 import { Caption } from "../Caption/Caption";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
-import { Controller } from 'swiper/modules';
+import 'swiper/css/effect-fade';
+import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import { Controller, EffectFade } from 'swiper/modules';
 import { useDrawerContext } from "../../providers/DrawerProvider";
 import { ReactionsDrawerContent } from "../ReactionsDrawerContent/ReactionsDrawerContent";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -39,21 +44,22 @@ export const PostFooter: React.FC<PostFooterProps> = ({postTime, content, captio
     drawerContext.onOpen()
   }
   
-  const captionSlides = captions.map((c, i) => <SwiperSlide key={c + i} style={{
+  const captionSlides = content.map((c, i) => <SwiperSlide key={c.caption + i} style={{
     flexDirection: 'column',
     display: 'flex',
     justifyContent: 'flex-end'
   }} >
 
-    <Caption text={c} />
+    <Caption text={c.caption} />
   </SwiperSlide>)
  
   return (
     <div className='post-footer'>
 
       <Swiper
+      effect="fade"
         className='swiper-custom'
-        modules={[Controller]}
+        modules={[Controller, EffectFade]}
         onSwiper={(swiper) => setSecondSwiper(swiper)}
         controller={{ control: swiper }}
       >
