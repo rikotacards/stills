@@ -6,7 +6,7 @@ import { onFollow } from '../../firebase/users';
 import { Followers } from '../Followers/Followers';
 import { useDrawerContext } from '../../providers/DrawerProvider';
 import { Following } from '../Following/Following';
-import { LineChart } from '@mui/x-charts/LineChart';
+import { LineChart } from '../LineChart/LineChart';
 interface ProfileHeaderProps {
   username: string;
   userId: string;
@@ -23,9 +23,12 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ username, image, f
   return (
     <>
       <Box justifyContent={'flex-start'} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: 1 }}>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', width:'100%', overflow: 'scroll' }}>
 
           <Avatar src={image} sx={{ height: 100, width: 100 }} />
+          <div style={{width: '100%'}}>
+            <LineChart/>
+          </div>
 
         </div>
         <Typography sx={{ textTransform: 'capitalize' }}>{username}</Typography>
