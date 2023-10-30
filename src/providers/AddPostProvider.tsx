@@ -18,6 +18,8 @@ interface AddPostContextProps {
   removePost: (index:number) => void;
   onPostClick: () => void;
   draftId?: string;
+  score: number;
+  handleScoreChange: (event: Event, newValue: number | number[]) => void
   setDraftId: (draftId: string) => void;
   setFromDraft:(draft: PostType[]) => void;
 }
@@ -31,12 +33,15 @@ interface PostContextProps {
 
 export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
   const [posts, setPosts] = React.useState<PostType[]>([{imageUrl:'', caption:'', imagePath: '', blobData: ''}])
+  const [score, setScore] = React.useState<number>(0);
+
   const [draftId, setId] = React.useState<string | undefined>()
   const setDraftId = (draftId: string) => {
     setId(draftId)
   }
   const clearPost = () => {
     setId(undefined)
+    setScore(0)
     setPosts([{imageUrl:'', caption:'', imagePath: '', blobData: ''}])
   }
   // const auth = useAuth();
@@ -45,6 +50,9 @@ export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
   const setFromDraft = (draft:PostType[]) => {
     setPosts(draft)
   }
+  const handleScoreChange = (event: Event, newValue: number | number[]) => {
+    setScore(newValue as number);
+  };
   const onPostClick = async() => {
     return
   //   if(!auth?.user?.uid){
@@ -118,7 +126,9 @@ export const AddPostProvider: React.FC<PostContextProps> = ({children}) => {
     removePost,
     onPostClick,
     setFromDraft,
-    clearPost
+    clearPost, 
+    score,
+    handleScoreChange
   }
 
   return (

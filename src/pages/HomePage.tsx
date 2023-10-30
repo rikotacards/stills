@@ -1,4 +1,4 @@
-import {  Toolbar } from '@mui/material';
+import {  Box, Toolbar } from '@mui/material';
 import React from 'react';
 import './HomePage.scss'
 import { PostResponse, getPostsByUid } from '../firebase/posts';
@@ -8,14 +8,15 @@ export const HomePage: React.FC = () => {
   const [posts, setPosts] = React.useState<PostResponse[]>([])
   React.useEffect(() => {
     getPostsByUid(sampleUid).then((res) => {
+      console.log(res)
       setPosts(res)
     })
   },[])
   return (
-    <div  className='home'>
+    <Box m={0} className='home'>
       {posts.map((post) => <Post {...post} />)}
               <Toolbar/>
 
-    </div>
+    </Box>
   )
 }

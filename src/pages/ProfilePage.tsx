@@ -6,6 +6,7 @@ import { getFollowerCount, getFollowingCount, getUidFromUsername, onFollow } fro
 import { useParams } from 'react-router-dom';
 import { ProfileHeader } from '../components/ProfileHeader/ProfileHeader';
 import { LineChart } from '../components/LineChart/LineChart';
+import { Card } from '@mui/material';
 export const ProfilePage: React.FC = () => {
   const { username } = useParams();
   const [isLoading, setLoading] = React.useState(true);
@@ -54,8 +55,9 @@ export const ProfilePage: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignSelf: 'flex-start', height: '100%' }}>
       <ProfileHeader followersCount={followersCount || 0} userId={userId || ''} image={image} followingCount={followingCount || 0} username={username || ''}/>
-      <LineChart/>
-      {/* <GridGallery posts={posts} /> */}
+
+      {/* <LineChart/> */}
+      <GridGallery posts={posts} />
     </div>
   )
 }

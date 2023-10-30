@@ -10,6 +10,7 @@ interface AddPostsProps {
   uid: string;
   posts: any[]
   draftId?: string;
+  score?: number;
 }
 
 export interface Content {
@@ -20,7 +21,7 @@ export interface Content {
 
 
 export const addPost = async(args:AddPostsProps) => {
-  const { uid, posts, draftId } = args;
+  const { uid, posts, draftId, score } = args;
 
   const collectionRef = collection(db, "content");
   const docRef = doc(collectionRef);
@@ -46,6 +47,7 @@ export const addPost = async(args:AddPostsProps) => {
           author: uid,
           content: content,
           postId: draftId,
+          score
         });
         return;
       }
@@ -68,6 +70,7 @@ export const addPost = async(args:AddPostsProps) => {
             author: uid,
             content: content,
             postId:  docRef.id,
+            score
           });
         });
 
@@ -140,6 +143,7 @@ export interface PostResponse {
   author: string;
   content: Content[];
   postId: string;
+  score?: number;
 }
 
 export const getPostsByUid = async (uid: string) => {

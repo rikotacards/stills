@@ -23,52 +23,10 @@ ChartJS.register(
   Filler
 );
 
+interface LineChartProps {
+  disableAxisLabels?: boolean;
+}
 
-export const options = {
-  scales: {
-   
-    y:
-
-    {
-      beginAtZero: true,
-      // max: 10,
-      // min: -10,
-      ticks: {
-        stepSize: 1,
-
-      },
-      grid: {
-        color: function (context) {
-          if (context?.tick.value === 0) {
-            return 'white'
-          }
-        }
-      }
-
-
-    }
-
-  },
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-      position: 'bottom' as const,
-    },
-    title: {
-      display: false,
-      text: 'Chart.js Line Chart',
-    },
-    tooltip: {
-      enabled: true,
-      interaction: {
-        intersect: false,
-        mode: 'nearest',
-      },
-    },
-    
-  },
-};
 
 const labels = ['30 Oct', 'Nov 1', 'Nov 2', 'Nov 3', 'Nov 4', 'Nov 5', 'Nov 6'];
 
@@ -100,6 +58,7 @@ export const data = {
       },
       backgroundColor: 'white',
       yAxisID: 'y',
+      xAxisID: 'x',
       borderWidth: 0,
       borderColor: 'rgb(255, 255, 255)',
      
@@ -109,8 +68,57 @@ export const data = {
 interface LineChartProps {
   posts: PostResponse[]
 }
-export const LineChart: React.FC = () => {
-
+export const LineChart: React.FC<LineChartProps> = ({disableAxisLabels}) => {
+   const options = {
+    scales: {
+      x: {
+        ticks: {
+          display: false
+        }
+      },
+      y:
+  
+      {
+        beginAtZero: true,
+        // max: 10,
+        // min: -10,
+        ticks: {
+          stepSize: 1,
+          display: false,
+        },
+        
+        grid: {
+          color: function (context) {
+            if (context?.tick.value === 0) {
+              return 'white'
+            }
+          }
+        }
+  
+  
+      }
+  
+    },
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+        position: 'bottom' as const,
+      },
+      title: {
+        display: false,
+        text: 'Chart.js Line Chart',
+      },
+      tooltip: {
+        enabled: true,
+        interaction: {
+          intersect: false,
+          mode: 'nearest',
+        },
+      },
+      
+    },
+  };
   return (
     <>
       <Line options={options} data={data} />

@@ -14,7 +14,8 @@ interface PreviewPageProps {
 }
 export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
   const nav = useNavigate();
-  const {posts, draftId, clearPost} = useAddPostContext();
+  const {posts, draftId, clearPost, score} = useAddPostContext();
+  console.log('score', score)
   const {onClose} = useDrawerContext();
   const isLessThanMd = useGetBreakpoints('md')
   const onPost = async() => {
@@ -23,10 +24,11 @@ export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
       {
         uid: sampleUid,
         posts, 
-        draftId
+        draftId,
+        score: score || 0
       }
     )
-    nav('/home')
+    nav('/')
     clearPost()
    draftId &&  deleteDraftByDraftId(draftId)
   }
@@ -46,7 +48,7 @@ export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
       </AppBar>
       <Toolbar/>
 
-      {posts.length ? <Post postTime={new Date()} content={posts} postId={''}/> : <Typography>Nothing to preview</Typography>}
+      {posts.length ? <Post score={score} postTime={new Date()} content={posts} postId={''}/> : <Typography>Nothing to preview</Typography>}
 
     </div>
   )

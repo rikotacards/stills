@@ -1,4 +1,4 @@
-import { Chip } from '@mui/material';
+import { Chip, Typography } from '@mui/material';
 import React from 'react';
 import { Emoji } from 'emoji-picker-react';
 import { LongPressEventType, useLongPress } from 'use-long-press';
@@ -58,7 +58,9 @@ export const Reactions: React.FC<ReactionsProps> = ({ postId }) => {
           }}
           size="small"
           variant="outlined"
-          label={<div style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', flexDirection: 'row' }}><div style={{ display: 'flex', alignItems: 'center', marginRight: 4 }}><Emoji size={15} unified={i[0]} /> </div>{i[1]}</div>} />
+          label={<div style={{ 
+            display: 'flex', 
+            alignContent: 'center', justifyContent: 'center', flexDirection: 'row' }}><div style={{pointerEvents: 'none', display: 'flex', alignItems: 'center', marginRight: 4 }}><Emoji size={13} unified={i[0]} /> </div><Typography variant='caption'>{i[1]}</Typography></div>} />
       )
     }
   }
