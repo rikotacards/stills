@@ -26,27 +26,28 @@ ChartJS.register(
 
 export const options = {
   scales: {
-    
+   
     y:
-    
-      {
-        // max: 10,
-        // min:-10,
-        ticks: {
-          stepSize:1,
-        
-        },
-        grid: {
-          color: function(context){
-            if(context?.tick.value === 0){
-              return 'white'
-            }
+
+    {
+      beginAtZero: true,
+      // max: 10,
+      // min: -10,
+      ticks: {
+        stepSize: 1,
+
+      },
+      grid: {
+        color: function (context) {
+          if (context?.tick.value === 0) {
+            return 'white'
           }
         }
-  
-        
       }
-    
+
+
+    }
+
   },
   responsive: true,
   plugins: {
@@ -59,23 +60,49 @@ export const options = {
       text: 'Chart.js Line Chart',
     },
     tooltip: {
-      enabled: true
-    }
+      enabled: true,
+      interaction: {
+        intersect: false,
+        mode: 'nearest',
+      },
+    },
+    
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['30 Oct', 'Nov 1', 'Nov 2', 'Nov 3', 'Nov 4', 'Nov 5', 'Nov 6'];
 
 export const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
-      data: [1,2,3, 8, 0,1,10],
-      tension: 0.4,
-      fill: true,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      label: 'Mood',
+      data: [0,-1, -2, -3, -8, 5, -10],
+      tension: 0.3,
+      fill: (context) => {
+        const chart = context.chart;
+        const { ctx, chartArea } = chart;
+        if(!chartArea){
+          return null
+        }
+        const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(1, 'rgba(0, 225, 0, 0.9)');
+    gradient.addColorStop(0, 'rgba(125, 0, 0, 0)');
+    const red = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    red.addColorStop(1, 'rgba(0, 100, 0, 0)');
+    red.addColorStop(0, 'rgba(225, 0, 0, 1)');
+
+        return {
+          target: 'origin',
+          above: gradient,
+          below: red
+        }
+      },
+      backgroundColor: 'white',
+      yAxisID: 'y',
+      borderWidth: 0,
+      borderColor: 'rgb(255, 255, 255)',
+     
     },
   ],
 };
@@ -86,7 +113,7 @@ export const LineChart: React.FC = () => {
 
   return (
     <>
-    <Line options={options} data={data}/>
+      <Line options={options} data={data} />
     </>
   )
 }
