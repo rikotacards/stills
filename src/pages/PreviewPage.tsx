@@ -1,8 +1,8 @@
 import React from 'react';
 import './PreviewPage.scss'
 import { Post } from '../components/Post/Post';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from 'react-router-dom';
 import { useGetBreakpoints } from '../utils/useGetBreakpoint';
 import { useAddPostContext } from '../providers/AddPostProvider';
@@ -15,22 +15,31 @@ interface PreviewPageProps {
 export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
   const nav = useNavigate();
   const {posts, draftId, clearPost, score} = useAddPostContext();
-  console.log('score', score)
+  const postsWithImage = posts.filter((p) => p.imagePath)
   const {onClose} = useDrawerContext();
+  const [isPosting, setPosting] = React.useState(false);
   const isLessThanMd = useGetBreakpoints('md')
   const onPost = async() => {
-    onClose()
-   await addPost(
-      {
-        uid: sampleUid,
-        posts, 
-        draftId,
-        score: score || 0
-      }
-    )
-    nav('/')
-    clearPost()
-   draftId &&  deleteDraftByDraftId(draftId)
+    try {
+      setPosting(true)
+      onClose()
+      await addPost(
+         {
+           uid: sampleUid,
+           posts: postsWithImage, 
+           draftId,
+           score: score || 0
+         }
+       )
+       nav('/')
+       clearPost()
+      draftId &&  deleteDraftByDraftId(draftId)
+    } catch {
+      setPosting(false)
+    } finally {
+      setPosting(false)
+    }
+    
   }
   const back = onBack ? onBack : () => nav(-1)
   return (
@@ -38,17 +47,17 @@ export const PreviewPage: React.FC<PreviewPageProps> = ({onBack}) => {
       <AppBar>
         <Toolbar>
           <div style={{ width: isLessThanMd ? 0 : 240 }}></div>
-          <IconButton onClick={back}><ArrowBackIosIcon /></IconButton>
+          <IconButton onClick={back}><ArrowBackIosNewIcon /></IconButton>
           <Typography color='white'>
             </Typography>
           <div style={{ marginLeft: 'auto' }}>
-            <Button size='small' onClick={onPost} variant='contained'><Typography sx={{textTransform: 'capitalize'}}color='white'>Post </Typography></Button>
+            <Button size='small' onClick={onPost} variant='contained'><Typography sx={{textTransform: 'capitalize'}}>{isPosting ? 'Posting' : 'Post'}</Typography></Button>
           </div>
         </Toolbar>
       </AppBar>
       <Toolbar/>
 
-      {posts.length ? <Post score={score} postTime={new Date()} content={posts} postId={''}/> : <Typography>Nothing to preview</Typography>}
+      {posts.length ? <Post score={score} postTime={new Date()} content={postsWithImage} postId={''}/> : <Typography>Nothing to preview</Typography>}
 
     </div>
   )

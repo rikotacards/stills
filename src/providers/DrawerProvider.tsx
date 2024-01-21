@@ -12,15 +12,14 @@ export const useDrawerContext = () => React.useContext(DrawerContext);
 
 interface DrawerProviderProps {
   children: React.ReactNode;
-  postId: string;
   enablePopup?: boolean;
 }
 
 export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
-  const { children, postId, enablePopup } = props;
+  const { children, enablePopup } = props;
   const [open, setOpen] = React.useState(false);
   const [component, setC] = React.useState<React.ReactNode | null>();
-  
+
 
   const setRenderComponent = (component: React.ReactNode) => {
     setC(component)
@@ -28,7 +27,7 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
 
 
   const onOpen = () => {
-   
+
     setOpen(true);
   };
   const onClose = () => {
@@ -61,8 +60,8 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
 
       {children}
 
-      <Drawer 
-      PaperProps={{square:false, elevation: 0, style: { backgroundColor: "transparent", borderTopLeftRadius:20, borderTopRightRadius: 20 } }}
+      <Drawer
+        PaperProps={{ square: false, elevation: 0, style: { backgroundColor: "transparent", borderTopLeftRadius: 20, borderTopRightRadius: 20 } }}
         sx={{ overflow: 'hidden', borderRadius: 9, height: '50%' }} anchor={"bottom"} open={open} onClose={onClose}>
         <Paper sx={{ backdropFilter: 'blur(20px)', overflow: "hidden" }} elevation={3}>
           {component && component}

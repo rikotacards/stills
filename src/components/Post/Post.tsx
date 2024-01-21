@@ -20,6 +20,8 @@ export const Post: React.FC<PostResponse> = ({score, content, postId, postTime }
   const isLessThanMd = useGetBreakpoints('md')
   const [page, setPage] = React.useState(1);
   const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(postTime)
+  const year = new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(postTime)
+
   const [isLoading, setLoading] = React.useState(true);
   const date = postTime?.getDate()
   const slides = content.map((p, i) => <SwiperSlide key={i}>
@@ -38,7 +40,7 @@ export const Post: React.FC<PostResponse> = ({score, content, postId, postTime }
   </SwiperSlide>)
   return (
     <ReactionsProvider postId={postId}>
-      <DrawerProvider enablePopup={!isLessThanMd} postId={postId}>
+      <DrawerProvider enablePopup={!isLessThanMd}>
         <div
           style={{ borderRadius: 20 }}
           className='post'
@@ -82,9 +84,9 @@ export const Post: React.FC<PostResponse> = ({score, content, postId, postTime }
           {/* <Typography variant='caption' sx={{ mr: 0 }}>{month} {date}</Typography> */}
           {/* <Typography variant='caption' sx={{ mr:0, ml:0 }}>{', Feeling 10/10'}</Typography> */}
 
-          <Chip sx={{ml:1}}  variant="filled" label={<Typography variant='caption'>{date} {month}</Typography>} size='small' />
+          <Chip sx={{ml:1}}  variant="filled" label={<Typography variant='caption'>{date} {month} {year}</Typography>} size='small' />
 
-          {score && <Chip variant="filled" sx={{ml:1}} label={<Typography variant='caption'>Feeling {score}/10</Typography>} size='small' />}
+          {score ? <Chip variant="filled" sx={{ml:1}} label={<Typography variant='caption'>Feeling {score}/10</Typography>} size='small' />: null}
         </div>
 
       </DrawerProvider>

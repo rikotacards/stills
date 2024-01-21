@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 const CreateButton: React.FC = () => {
   const { onOpen, setRenderComponent } = useDrawerContext();
   const onClick = () => {
-    console.log('his')
     setRenderComponent(<NewPostContent/>)
     onOpen();
   }
