@@ -8,7 +8,7 @@ interface GridGalleryProps {
 }
 export const GridGallery: React.FC<GridGalleryProps> = ({posts}) => {
   
-  const gridItems = posts.map((post) =>  <Grid item xs={6} md={4}>
+  const gridItems = posts.map((post) =>  <Grid key={post.postId} item xs={6} md={4}>
   
 <ImageWithLoading postId={post.postId} imagePath={post.content[0].imagePath}/>  </Grid>)
   return (
