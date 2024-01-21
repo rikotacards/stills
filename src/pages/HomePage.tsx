@@ -14,7 +14,10 @@ export const HomePage: React.FC = () => {
   },[])
   return (
     <Box m={0} className='home'>
+      <div>
+
       {posts.map((post) => <Post {...post} />)}
+      </div>
               <Toolbar/>
 
     </Box>

@@ -158,10 +158,8 @@ querySnapshot.forEach((doc) => {
 return res
 }
 export const getPostByPostId = async (postId: string) => {
-  console.log("getting")
   const snapshot = await getDoc(doc(db, 'content', postId))
   if(snapshot.exists()){
-    console.log('data', snapshot.data)
     return {...snapshot.data(), postTime: snapshot.data().postTime.toDate()} as PostResponse;
   }
 }

@@ -14,14 +14,12 @@ export const PostPage: React.FC = () => {
       return;
     }
     getPostByPostId(postId).then((res) => {
-      console.log('res', res)
-      setPost(res)
     }).then(() => setLoading(false))
   }, [postId])
-  if(isLoading && !post){
+  if (isLoading && !post) {
     return <Typography>Loading</Typography>
   }
-  if(!isLoading && !post){
+  if (!isLoading && !post) {
     return <Typography>Post has been removed</Typography>
 
   }
