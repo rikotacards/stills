@@ -6,14 +6,14 @@ import './Gallery.scss'
 interface GridGalleryProps {
   posts: PostResponse[];
 }
-export const GridGallery: React.FC<GridGalleryProps> = ({posts}) => {
-  
-  const gridItems = posts.map((post) =>  <Grid key={post.postId} item xs={6} md={4}>
-  
-<ImageWithLoading postId={post.postId} imagePath={post.content[0].imagePath}/>  </Grid>)
+export const GridGallery: React.FC<GridGalleryProps> = ({ posts }) => {
+
+  const gridItems = posts.map((post) => <Grid key={post.postId} item xs={4} md={4}>
+
+    <ImageWithLoading postId={post.postId} imagePath={post.content[0].imagePath} />  </Grid>)
   return (
-    <div className='post-list' spacing={1}>
+    <Grid container spacing={0.5}>
       {gridItems}
-    </div>
+    </Grid>
   )
 }

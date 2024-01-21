@@ -1,23 +1,41 @@
 import React from 'react';
 import { Post } from '../components/Post/Post';
 import './PostPage.scss'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 import { PostResponse, getPostByPostId } from '../firebase/posts';
-import { Typography } from '@mui/material';
-export const PostPage: React.FC = () => {
+interface PostPageProps {
+  postId?: string;
+}
+import { AppBar, Button, IconButton, LinearProgress, Toolbar, Typography } from '@mui/material';
+import { useGetBreakpoints } from '../utils/useGetBreakpoint';
+export const PostPage: React.FC<PostPageProps> = ({ postId: passedInPostId }) => {
   const { postId } = useParams();
-  console.log('postid', postId)
+  const usedPostId = postId || passedInPostId
+  const nav = useNavigate();
+  const isNarrow = useGetBreakpoints('md')
   const [isLoading, setLoading] = React.useState(true);
   const [post, setPost] = React.useState<PostResponse | undefined>()
   React.useEffect(() => {
-    if (!postId) {
+    if (!usedPostId) {
       return;
     }
-    getPostByPostId(postId).then((res) => {
-    }).then(() => setLoading(false))
-  }, [postId])
+    const getPost = async () => {
+      try {
+        const res = await getPostByPostId(usedPostId)
+        if (res) {
+          setLoading(false);
+          setPost(res)
+        }
+      } catch {
+        setLoading(false)
+      }
+    }
+    getPost();
+  }, [usedPostId])
   if (isLoading && !post) {
-    return <Typography>Loading</Typography>
+    return <LinearProgress />
   }
   if (!isLoading && !post) {
     return <Typography>Post has been removed</Typography>
@@ -25,7 +43,18 @@ export const PostPage: React.FC = () => {
   }
   return (
     <div className='post-page'>
-      <Post {...post} />
+      {isNarrow && <><AppBar>
+        <Toolbar>
+          <IconButton onClick={() => nav(-1)}><ArrowBackIosNewIcon /></IconButton>
+          <Typography color='white'>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+        <Toolbar /></>}
+      <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', width: '100%' }}>
+
+        <Post {...post} />
+      </div>
     </div>
   )
 }

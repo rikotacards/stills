@@ -48,7 +48,7 @@ export const DrawerProvider: React.FC<DrawerProviderProps> = (props) => {
         {children}
 
         <Dialog open={open} onClose={onClose}>
-          <Paper sx={modalStyles} elevation={3}>
+          <Paper sx={modalStyles} elevation={0}>
             {component && component}
           </Paper>
         </Dialog>

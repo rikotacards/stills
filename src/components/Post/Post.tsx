@@ -81,8 +81,6 @@ export const Post: React.FC<PostResponse> = ({score, content, postId, postTime }
           alignItems: 'center'
         }}
         >
-          {/* <Typography variant='caption' sx={{ mr: 0 }}>{month} {date}</Typography> */}
-          {/* <Typography variant='caption' sx={{ mr:0, ml:0 }}>{', Feeling 10/10'}</Typography> */}
 
           <Chip sx={{ml:1}}  variant="filled" label={<Typography variant='caption'>{date} {month} {year}</Typography>} size='small' />
 
