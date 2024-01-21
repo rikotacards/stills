@@ -158,9 +158,14 @@ querySnapshot.forEach((doc) => {
 return res
 }
 export const getPostByPostId = async (postId: string) => {
-  const snapshot = await getDoc(doc(db, 'content', postId))
-  if(snapshot.exists()){
-    return {...snapshot.data(), postTime: snapshot.data().postTime.toDate()} as PostResponse;
+  try {
+
+    const snapshot = await getDoc(doc(db, 'content', postId))
+    if(snapshot.exists()){
+      return {...snapshot.data(), postTime: snapshot.data().postTime.toDate()} as PostResponse;
+    }
+  } catch {
+    throw new Error('failed to fetch post')
   }
 }
 

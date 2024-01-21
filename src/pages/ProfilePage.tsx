@@ -6,12 +6,17 @@ import { getFollowerCount, getFollowingCount, getUidFromUsername, onFollow } fro
 import { useParams } from 'react-router-dom';
 import { ProfileHeader } from '../components/ProfileHeader/ProfileHeader';
 import { LineChart } from '../components/LineChart/LineChart';
-import { Card } from '@mui/material';
+import { Card, LinearProgress, Skeleton } from '@mui/material';
+import { ProfilePageLoadingState } from '../components/ProfilePageLoadingState/ProfilePageLoadingState';
+import { useGetBreakpoints } from '../utils/useGetBreakpoint';
+
+
 export const ProfilePage: React.FC = () => {
   const { username } = useParams();
   const [isLoading, setLoading] = React.useState(true);
   const [posts, setPosts] = React.useState<PostResponse[]>([])
   const [userId, setUserId] = React.useState()
+  const isNarrow = useGetBreakpoints('md')
   const [followersCount, setFollowersCounts] = React.useState<number | undefined>()
   const [followingCount, setFollowingCount] = React.useState<number | undefined>();
   const init = async () => {
@@ -48,14 +53,16 @@ export const ProfilePage: React.FC = () => {
   if (isLoading && (!userId || !username)) {
     return (
       <div>
-        Loading
+        <LinearProgress />
       </div>
     )
   }
+  
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignSelf: 'flex-start', height: '100%' }}>
+    <div style={{margin: isNarrow ? '0':'0 10%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignSelf: 'flex-start', height: '100%' }}>
       <ProfileHeader followersCount={followersCount || 0} userId={userId || ''} image={image} followingCount={followingCount || 0} username={username || ''}/>
-
+      { isLoading && posts.length === 0 && <ProfilePageLoadingState/>
+}
       {/* <LineChart/> */}
       <GridGallery posts={posts} />
     </div>
