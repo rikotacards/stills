@@ -19,16 +19,17 @@ import { PostPage } from './pages/PostPage';
 import { ThemeProvider } from '@emotion/react';
 import {darkTheme} from './configs/theme';
 import { DrawerProvider } from './providers/DrawerProvider';
+import { useGetBreakpoints } from './utils/useGetBreakpoint';
 
 
 function App() {
-
+  const isMd = useGetBreakpoints('md')
   return (
     <ThemeProvider theme={darkTheme}>
 
       <BrowserRouter>
         <AddPostProvider>
-          <DrawerProvider>
+          <DrawerProvider enablePopup={!isMd}>
             <Layout>
               <Routes>
                 <Route path='/' element={<HomePage />} />

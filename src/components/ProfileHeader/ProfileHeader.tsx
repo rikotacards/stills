@@ -31,7 +31,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ username, image, f
 
           <Avatar src={image} sx={{ height: 100, width: 100 }} />
           <Box sx={{ ml: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-    <LineChart/>
+    {/* <LineChart/> */}
             
           </Box>
         </div>

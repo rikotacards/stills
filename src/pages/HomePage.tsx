@@ -16,7 +16,7 @@ export const HomePage: React.FC = () => {
     <Box m={0} className='home'>
       <div>
 
-      {posts.map((post) => <Post {...post} />)}
+      {posts.map((post) => <Post key={post.postId} {...post} />)}
       </div>
               <Toolbar/>
 
